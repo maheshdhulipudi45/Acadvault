@@ -30,4 +30,14 @@ app.get("/health", (req, res) => {
   res.json({ status: "ok", timestamp: new Date() });
 });
 
+// Welcome root route to avoid "Cannot GET /"
+app.get("/", (req, res) => {
+  res.json({
+    message: "Welcome to the AcadVault API!",
+    status: "healthy",
+    documentation: "/health",
+    version: "1.0.0"
+  });
+});
+
 export default app;

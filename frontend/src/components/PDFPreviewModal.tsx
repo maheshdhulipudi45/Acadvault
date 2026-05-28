@@ -29,7 +29,7 @@ import { toast } from "sonner";
 import { useAuth } from "@/lib/auth-context";
 import { authModal } from "@/lib/auth-modal";
 import { previewModal, usePreviewModal } from "@/lib/preview-modal";
-import { apiFetch } from "@/lib/api";
+import { apiFetch, API_BASE_URL } from "@/lib/api";
 import { fileMeta, formatNum, timeAgo } from "@/lib/format";
 
 export function PDFPreviewModal() {
@@ -237,7 +237,7 @@ export function PDFPreviewModal() {
                     src={
                       detail.file_path === "link"
                         ? detail.file_url
-                        : `http://localhost:5000/api/resources/${detail.id}/file`
+                        : `${API_BASE_URL}/resources/${detail.id}/file`
                     }
                     title={detail.title}
                     className="w-full h-full min-h-[350px] rounded-xl border-0"

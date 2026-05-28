@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import { authModal, useAuthModal } from "@/lib/auth-modal";
 import { useAuth } from "@/lib/auth-context";
 import { supabase } from "@/integrations/supabase/client";
+import { API_BASE_URL } from "@/lib/api";
 
 export function AuthModal() {
   const { open, mode, message } = useAuthModal();
@@ -38,7 +39,7 @@ export function AuthModal() {
           }
           window.open(fileUrl, "_blank");
           // Trigger backend increment asynchronously
-          fetch(`http://localhost:5000/api/resources/${r.id}/download`, { method: "POST" })
+          fetch(`${API_BASE_URL}/resources/${r.id}/download`, { method: "POST" })
             .catch(err => console.error("Increment downloads from pending failed:", err));
           toast.success(`Download started for "${r.title}"`);
         } catch (e) {
@@ -53,7 +54,7 @@ export function AuthModal() {
     setLoading(true);
     try {
       if (mode === "signup") {
-        const response = await fetch("http://localhost:5000/api/auth/signup", {
+        const response = await fetch(`${API_BASE_URL}/auth/signup`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(form),
@@ -97,7 +98,7 @@ export function AuthModal() {
         signIn(data.token, data.user);
         toast.success("Welcome to AcadVault!");
       } else {
-        const response = await fetch("http://localhost:5000/api/auth/login", {
+        const response = await fetch(`${API_BASE_URL}/auth/login`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email: form.email, password: form.password }),

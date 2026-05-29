@@ -1,7 +1,16 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
-import { Bookmark, Star, Download, Sparkles, Loader2, BookOpen, Heart, CheckCircle } from "lucide-react";
+import {
+  Bookmark,
+  Star,
+  Download,
+  Sparkles,
+  Loader2,
+  BookOpen,
+  Heart,
+  CheckCircle,
+} from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Button } from "@/components/ui/button";
 import { apiFetch } from "@/lib/api";
@@ -21,7 +30,11 @@ function SavedResources() {
     }
   }, [user, loading]);
 
-  const { data: items, isLoading, refetch } = useQuery({
+  const {
+    data: items,
+    isLoading,
+    refetch,
+  } = useQuery({
     enabled: !!user,
     queryKey: ["saved", user?.id],
     queryFn: () => apiFetch("/resources/saved"),
@@ -61,18 +74,22 @@ function SavedResources() {
     <SiteLayout>
       <div className="px-4 lg:px-8 py-10">
         <div className="mx-auto max-w-[1200px]">
-          
           {/* Page Header */}
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
             <div>
-              <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight">Saved Resources</h1>
+              <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight">
+                Saved Resources
+              </h1>
               <p className="text-muted-foreground mt-1.5 flex items-center gap-1.5 text-sm">
                 <Bookmark className="h-4 w-4 text-violet-500 fill-current" />
                 {items?.length ?? 0} saved educational documents & links
               </p>
             </div>
             <Link to="/resources">
-              <Button variant="outline" className="rounded-xl border-zinc-200 hover:bg-slate-50 font-semibold cursor-pointer">
+              <Button
+                variant="outline"
+                className="rounded-xl border-zinc-200 hover:bg-slate-50 font-semibold cursor-pointer"
+              >
                 <BookOpen className="h-4 w-4 mr-2" /> Explore more resources
               </Button>
             </Link>
@@ -84,7 +101,8 @@ function SavedResources() {
               <Bookmark className="mx-auto h-12 w-12 text-slate-350 mb-3" />
               <p className="font-bold text-slate-800 text-lg mb-1">Your vault is empty</p>
               <p className="text-sm text-slate-500 mb-6 max-w-sm mx-auto">
-                Bookmark notes, previous semester exam papers, interview questions, or playlists to access them instantly from this page.
+                Bookmark notes, previous semester exam papers, interview questions, or playlists to
+                access them instantly from this page.
               </p>
               <Link to="/resources">
                 <Button className="rounded-xl bg-gradient-primary text-white shadow-glow">
@@ -96,9 +114,13 @@ function SavedResources() {
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {items.map((r: any) => {
                 const meta = fileMeta(r.file_type);
-                const avgRating = r.ratings && r.ratings.length > 0
-                  ? (r.ratings.reduce((sum: number, x: any) => sum + x.score, 0) / r.ratings.length).toFixed(1)
-                  : "N/A";
+                const avgRating =
+                  r.ratings && r.ratings.length > 0
+                    ? (
+                        r.ratings.reduce((sum: number, x: any) => sum + x.score, 0) /
+                        r.ratings.length
+                      ).toFixed(1)
+                    : "N/A";
 
                 return (
                   <div
@@ -109,7 +131,9 @@ function SavedResources() {
                     <div>
                       {/* Icon + Top category bar */}
                       <div className="flex items-start justify-between mb-4">
-                        <div className={`flex h-12 w-12 items-center justify-center rounded-2xl ${meta.color} font-extrabold text-xs shrink-0 shadow-sm`}>
+                        <div
+                          className={`flex h-12 w-12 items-center justify-center rounded-2xl ${meta.color} font-extrabold text-xs shrink-0 shadow-sm`}
+                        >
                           {meta.label}
                         </div>
                         <div className="flex flex-col items-end gap-1.5">

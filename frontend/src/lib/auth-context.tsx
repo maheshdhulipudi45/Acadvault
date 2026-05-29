@@ -20,7 +20,12 @@ type AuthCtx = {
   signIn: (token: string, user: User) => void;
 };
 
-const Ctx = createContext<AuthCtx>({ user: null, loading: true, signOut: async () => {}, signIn: () => {} });
+const Ctx = createContext<AuthCtx>({
+  user: null,
+  loading: true,
+  signOut: async () => {},
+  signIn: () => {},
+});
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
@@ -74,12 +79,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <Ctx.Provider value={{
-      user,
-      loading,
-      signOut,
-      signIn,
-    }}>
+    <Ctx.Provider
+      value={{
+        user,
+        loading,
+        signOut,
+        signIn,
+      }}
+    >
       {children}
     </Ctx.Provider>
   );

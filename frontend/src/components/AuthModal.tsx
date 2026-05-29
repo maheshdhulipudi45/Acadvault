@@ -1,5 +1,11 @@
 import { useState, useEffect } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -35,12 +41,16 @@ export function AuthModal() {
           // Auto-repair legacy URLs missing '/public/' segment to prevent Supabase 400 Bad Request
           let fileUrl = r.file_url;
           if (fileUrl && fileUrl.includes("/storage/v1/object/resources/")) {
-            fileUrl = fileUrl.replace("/storage/v1/object/resources/", "/storage/v1/object/public/resources/");
+            fileUrl = fileUrl.replace(
+              "/storage/v1/object/resources/",
+              "/storage/v1/object/public/resources/",
+            );
           }
           window.open(fileUrl, "_blank");
           // Trigger backend increment asynchronously
-          fetch(`${API_BASE_URL}/resources/${r.id}/download`, { method: "POST" })
-            .catch(err => console.error("Increment downloads from pending failed:", err));
+          fetch(`${API_BASE_URL}/resources/${r.id}/download`, { method: "POST" }).catch((err) =>
+            console.error("Increment downloads from pending failed:", err),
+          );
           toast.success(`Download started for "${r.title}"`);
         } catch (e) {
           console.error("Execute pending download failed:", e);
@@ -73,14 +83,14 @@ export function AuthModal() {
               data: {
                 full_name: form.full_name,
                 college_name: form.college_name,
-              }
-            }
+              },
+            },
           });
           if (sbRes.error) {
             // Sign-up failed (e.g. user already registered), attempt signing in instead
             await supabase.auth.signInWithPassword({
               email: form.email,
-              password: form.password
+              password: form.password,
             });
           }
         } catch (sbErr) {
@@ -88,7 +98,7 @@ export function AuthModal() {
           try {
             await supabase.auth.signInWithPassword({
               email: form.email,
-              password: form.password
+              password: form.password,
             });
           } catch (e) {
             console.warn("Supabase Auth registration and sign-in fallback failed:", e);
@@ -112,7 +122,7 @@ export function AuthModal() {
         try {
           await supabase.auth.signInWithPassword({
             email: form.email,
-            password: form.password
+            password: form.password,
           });
         } catch (sbErr) {
           console.warn("Supabase Auth session bypass:", sbErr);
@@ -141,9 +151,10 @@ export function AuthModal() {
               {mode === "signup" ? "Create your account" : "Welcome back"}
             </DialogTitle>
             <DialogDescription className="text-zinc-400 text-sm">
-              {message ?? (mode === "signup"
-                ? "Join thousands of students sharing knowledge."
-                : "Log in to access and download resources.")}
+              {message ??
+                (mode === "signup"
+                  ? "Join thousands of students sharing knowledge."
+                  : "Log in to access and download resources.")}
             </DialogDescription>
           </DialogHeader>
 
@@ -151,7 +162,9 @@ export function AuthModal() {
             {mode === "signup" && (
               <>
                 <div className="space-y-2">
-                  <Label htmlFor="full_name" className="text-zinc-300 text-xs font-semibold">Full Name</Label>
+                  <Label htmlFor="full_name" className="text-zinc-300 text-xs font-semibold">
+                    Full Name
+                  </Label>
                   <Input
                     id="full_name"
                     required
@@ -162,7 +175,9 @@ export function AuthModal() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="college_name" className="text-zinc-300 text-xs font-semibold">College Name</Label>
+                  <Label htmlFor="college_name" className="text-zinc-300 text-xs font-semibold">
+                    College Name
+                  </Label>
                   <Input
                     id="college_name"
                     required
@@ -175,7 +190,9 @@ export function AuthModal() {
               </>
             )}
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-zinc-300 text-xs font-semibold">Email Address</Label>
+              <Label htmlFor="email" className="text-zinc-300 text-xs font-semibold">
+                Email Address
+              </Label>
               <Input
                 id="email"
                 type="email"
@@ -187,7 +204,9 @@ export function AuthModal() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password" className="text-zinc-300 text-xs font-semibold">Password</Label>
+              <Label htmlFor="password" className="text-zinc-300 text-xs font-semibold">
+                Password
+              </Label>
               <div className="relative">
                 <Input
                   id="password"

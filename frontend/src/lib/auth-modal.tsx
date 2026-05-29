@@ -1,5 +1,3 @@
-
-
 // Lightweight global store without extra deps
 type State = {
   open: boolean;
@@ -12,7 +10,11 @@ type State = {
 
 import { useSyncExternalStore } from "react";
 
-let state: Omit<State, "show" | "hide" | "setMode"> = { open: false, mode: "login", message: undefined };
+let state: Omit<State, "show" | "hide" | "setMode"> = {
+  open: false,
+  mode: "login",
+  message: undefined,
+};
 const listeners = new Set<() => void>();
 const emit = () => listeners.forEach((l) => l());
 
@@ -33,7 +35,10 @@ export const authModal = {
 
 export function useAuthModal() {
   return useSyncExternalStore(
-    (cb) => { listeners.add(cb); return () => listeners.delete(cb); },
+    (cb) => {
+      listeners.add(cb);
+      return () => listeners.delete(cb);
+    },
     () => state,
     () => state,
   );

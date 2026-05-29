@@ -39,7 +39,7 @@ function LoginPage() {
       try {
         await supabase.auth.signInWithPassword({
           email: form.email,
-          password: form.password
+          password: form.password,
         });
       } catch (sbErr) {
         console.warn("Supabase Auth session bypass:", sbErr);
@@ -80,7 +80,6 @@ function LoginPage() {
       <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
 
       <div className="w-full max-w-md relative z-10">
-
         {/* Logo */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -111,7 +110,9 @@ function LoginPage() {
 
           <form onSubmit={submit} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-zinc-300 text-xs font-semibold">Email Address</Label>
+              <Label htmlFor="email" className="text-zinc-300 text-xs font-semibold">
+                Email Address
+              </Label>
               <Input
                 id="email"
                 type="email"
@@ -124,7 +125,9 @@ function LoginPage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password" className="text-zinc-300 text-xs font-semibold">Password</Label>
+              <Label htmlFor="password" className="text-zinc-300 text-xs font-semibold">
+                Password
+              </Label>
               <div className="relative">
                 <Input
                   id="password"
@@ -150,7 +153,10 @@ function LoginPage() {
                 <Checkbox className="border-white/20 data-[state=checked]:bg-violet-600 data-[state=checked]:border-transparent rounded" />
                 <span>Keep me signed in</span>
               </label>
-              <Link to="/forgot-password" className="text-violet-400 font-semibold hover:text-violet-300 transition-colors hover:underline">
+              <Link
+                to="/forgot-password"
+                className="text-violet-400 font-semibold hover:text-violet-300 transition-colors hover:underline"
+              >
                 Forgot password?
               </Link>
             </div>
@@ -160,16 +166,15 @@ function LoginPage() {
               disabled={loading}
               className="w-full h-11 rounded-xl bg-gradient-primary text-white hover:opacity-90 shadow-glow font-semibold transition-all mt-2 cursor-pointer flex items-center justify-center gap-2"
             >
-              {loading ? (
-                <Loader2 className="h-4 w-4 animate-spin" />
-              ) : (
-                <>Unlock Vault</>
-              )}
+              {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <>Unlock Vault</>}
             </Button>
 
             <p className="text-center text-xs text-zinc-400 mt-4">
               First time here?{" "}
-              <Link to="/signup" className="text-violet-400 font-bold hover:text-violet-300 hover:underline transition-colors">
+              <Link
+                to="/signup"
+                className="text-violet-400 font-bold hover:text-violet-300 hover:underline transition-colors"
+              >
                 Initialize an account
               </Link>
             </p>

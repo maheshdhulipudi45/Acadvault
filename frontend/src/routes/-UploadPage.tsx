@@ -35,14 +35,7 @@ import { authModal } from "@/lib/auth-modal";
 import { toast } from "sonner";
 import { motion, AnimatePresence } from "framer-motion";
 
-type ResourceMode =
-  | "file"
-  | "drive"
-  | "youtube"
-  | "website"
-  | "github"
-  | "interview"
-  | "placement";
+type ResourceMode = "file" | "drive" | "youtube" | "website" | "github" | "interview" | "placement";
 
 const CATEGORIES = [
   "BTech Notes",
@@ -173,13 +166,15 @@ export function UploadPage() {
   useEffect(() => {
     if (mode === "youtube" && form.url_link) {
       // Extract video ID from youtube playlist / video link to display dynamic preview thumbnail
-      const playlistReg = /[?&]list=([^#\&\?]+)/;
-      const videoReg = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+      const playlistReg = /[?&]list=([^#&?]+)/;
+      const videoReg = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
       const playMatch = form.url_link.match(playlistReg);
       const vidMatch = form.url_link.match(videoReg);
 
       if (playMatch && playMatch[1]) {
-        setYoutubePreview(`https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&auto=format&fit=crop&q=80`);
+        setYoutubePreview(
+          `https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&auto=format&fit=crop&q=80`,
+        );
       } else if (vidMatch && vidMatch[2].length === 11) {
         setYoutubePreview(`https://i3.ytimg.com/vi/${vidMatch[2]}/0.jpg`);
       } else {
@@ -304,9 +299,9 @@ export function UploadPage() {
       }
 
       // Live Duplicate Similarity Checks in Backend before sending
-      // The backend /resources POST endpoint does automatic hashing, URL duplicate checking, 
+      // The backend /resources POST endpoint does automatic hashing, URL duplicate checking,
       // and metadata similarity validation to output custom 400 "Similar resource already exists." errors.
-      
+
       const payload: any = {
         title: titleToSubmit,
         description: form.description || null,
@@ -350,7 +345,6 @@ export function UploadPage() {
     <SiteLayout>
       <div className="px-4 lg:px-8 py-10">
         <div className="mx-auto max-w-3xl">
-          
           {/* Top Hero Banner */}
           <div className="rounded-[32px] bg-gradient-to-r from-purple-50 via-blue-50 to-green-50 border border-purple-100/50 p-8 md:p-10 mb-8 text-center shadow-[0_15px_40px_rgba(139,92,246,0.02)]">
             <UploadCloud
@@ -364,7 +358,8 @@ export function UploadPage() {
               </span>
             </h1>
             <p className="text-muted-foreground font-semibold text-sm">
-              Reduce storage costs and build a collaborative ecosystem by sharing drive directories, playlist courses, or repositories.
+              Reduce storage costs and build a collaborative ecosystem by sharing drive directories,
+              playlist courses, or repositories.
             </p>
           </div>
 
@@ -443,8 +438,12 @@ export function UploadPage() {
                         >
                           <label className="flex flex-col items-center justify-center cursor-pointer w-full h-full">
                             <UploadCloud className="h-10 w-10 text-purple-500 mb-3 animate-pulse" />
-                            <p className="font-bold text-slate-850">Click to upload or drag and drop</p>
-                            <p className="text-xs text-slate-500 font-semibold mt-1">PDF, PPT, DOCX, ZIP (max 50MB)</p>
+                            <p className="font-bold text-slate-850">
+                              Click to upload or drag and drop
+                            </p>
+                            <p className="text-xs text-slate-500 font-semibold mt-1">
+                              PDF, PPT, DOCX, ZIP (max 50MB)
+                            </p>
                             <input
                               type="file"
                               className="hidden"
@@ -455,7 +454,9 @@ export function UploadPage() {
                         </div>
                       ) : (
                         <div className="flex items-center justify-between rounded-2xl bg-purple-50/40 border border-purple-100 p-4 shadow-sm">
-                          <span className="text-sm font-bold text-slate-850 truncate">{file.name}</span>
+                          <span className="text-sm font-bold text-slate-850 truncate">
+                            {file.name}
+                          </span>
                           <button
                             type="button"
                             onClick={() => setFile(null)}
@@ -527,7 +528,10 @@ export function UploadPage() {
                         <FolderOpen className="h-5 w-5 text-sky-500 shrink-0" />
                         <div>
                           <p className="font-bold">Google Drive Cloud Preview Active</p>
-                          <p className="mt-0.5 text-slate-500">Ensure the directory sharing permissions are set to 'Anyone with the link' so students can access it.</p>
+                          <p className="mt-0.5 text-slate-500">
+                            Ensure the directory sharing permissions are set to 'Anyone with the
+                            link' so students can access it.
+                          </p>
                         </div>
                       </div>
                     )}
@@ -578,7 +582,9 @@ export function UploadPage() {
                           alt="YouTube Course"
                         />
                         <div className="absolute inset-0 flex items-center justify-center">
-                          <span className="h-10 w-10 bg-red-650 text-white rounded-full flex items-center justify-center shadow-lg"><Youtube className="h-5 w-5" /></span>
+                          <span className="h-10 w-10 bg-red-650 text-white rounded-full flex items-center justify-center shadow-lg">
+                            <Youtube className="h-5 w-5" />
+                          </span>
                         </div>
                         <span className="absolute bottom-3 left-3 text-[10px] bg-black/60 px-2 py-0.5 rounded text-white font-bold">
                           Course Playlist Preview
@@ -629,14 +635,19 @@ export function UploadPage() {
                         <img
                           src={`https://www.google.com/s2/favicons?sz=64&domain=${form.url_link}`}
                           onError={(e) => {
-                            (e.target as any).src = "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=50";
+                            (e.target as any).src =
+                              "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=50";
                           }}
                           className="h-8 w-8 rounded-lg shrink-0 object-contain border border-slate-100"
                           alt="favicon"
                         />
                         <div className="min-w-0 flex-1">
-                          <p className="text-xs font-bold text-slate-800 truncate">{form.url_link}</p>
-                          <p className="text-[10px] text-slate-400 font-semibold">Educational site favicon preview</p>
+                          <p className="text-xs font-bold text-slate-800 truncate">
+                            {form.url_link}
+                          </p>
+                          <p className="text-[10px] text-slate-400 font-semibold">
+                            Educational site favicon preview
+                          </p>
                         </div>
                       </div>
                     )}
@@ -676,7 +687,11 @@ export function UploadPage() {
                         <div className="flex items-center gap-3 justify-between">
                           <div className="flex items-center gap-2">
                             {githubInfo.ownerAvatar && (
-                              <img src={githubInfo.ownerAvatar} className="h-6 w-6 rounded-full" alt="" />
+                              <img
+                                src={githubInfo.ownerAvatar}
+                                className="h-6 w-6 rounded-full"
+                                alt=""
+                              />
                             )}
                             <span className="font-extrabold text-xs">{githubInfo.name}</span>
                           </div>
@@ -721,7 +736,9 @@ export function UploadPage() {
                     </div>
 
                     <div className="space-y-2">
-                      <Label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Sharing Format</Label>
+                      <Label className="text-xs font-bold text-slate-500 uppercase tracking-wide">
+                        Sharing Format
+                      </Label>
                       <div className="flex gap-2">
                         <button
                           type="button"
@@ -764,7 +781,9 @@ export function UploadPage() {
                         {!file ? (
                           <label className="flex flex-col items-center justify-center border-2 border-dashed border-purple-100/80 bg-purple-50/10 rounded-2xl p-10 cursor-pointer hover:border-purple-300 hover:bg-purple-50/30 transition-all duration-300">
                             <UploadCloud className="h-10 w-10 text-purple-500 mb-3 animate-pulse" />
-                            <p className="font-bold text-slate-850">Click to upload or drag and drop</p>
+                            <p className="font-bold text-slate-850">
+                              Click to upload or drag and drop
+                            </p>
                             <input
                               type="file"
                               className="hidden"
@@ -774,7 +793,9 @@ export function UploadPage() {
                           </label>
                         ) : (
                           <div className="flex items-center justify-between rounded-2xl bg-purple-50/40 border border-purple-100 p-4">
-                            <span className="text-sm font-bold text-slate-850 truncate">{file.name}</span>
+                            <span className="text-sm font-bold text-slate-850 truncate">
+                              {file.name}
+                            </span>
                             <button
                               type="button"
                               onClick={() => setFile(null)}
@@ -818,7 +839,9 @@ export function UploadPage() {
                     </Field>
 
                     <div className="space-y-2">
-                      <Label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Sharing Format</Label>
+                      <Label className="text-xs font-bold text-slate-500 uppercase tracking-wide">
+                        Sharing Format
+                      </Label>
                       <div className="flex gap-2">
                         <button
                           type="button"
@@ -861,7 +884,9 @@ export function UploadPage() {
                         {!file ? (
                           <label className="flex flex-col items-center justify-center border-2 border-dashed border-purple-100/80 bg-purple-50/10 rounded-2xl p-10 cursor-pointer hover:border-purple-300 hover:bg-purple-50/30 transition-all duration-300">
                             <UploadCloud className="h-10 w-10 text-purple-500 mb-3 animate-pulse" />
-                            <p className="font-bold text-slate-850">Click to upload or drag and drop</p>
+                            <p className="font-bold text-slate-850">
+                              Click to upload or drag and drop
+                            </p>
                             <input
                               type="file"
                               className="hidden"
@@ -871,7 +896,9 @@ export function UploadPage() {
                           </label>
                         ) : (
                           <div className="flex items-center justify-between rounded-2xl bg-purple-50/40 border border-purple-100 p-4">
-                            <span className="text-sm font-bold text-slate-850 truncate">{file.name}</span>
+                            <span className="text-sm font-bold text-slate-850 truncate">
+                              {file.name}
+                            </span>
                             <button
                               type="button"
                               onClick={() => setFile(null)}
@@ -929,7 +956,9 @@ export function UploadPage() {
 
               {/* Suggestions */}
               <div className="space-y-1.5">
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Suggested popular tags</p>
+                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                  Suggested popular tags
+                </p>
                 <div className="flex flex-wrap gap-1.5">
                   {POPULAR_TAGS.map((tag) => {
                     const clean = tag.toLowerCase();

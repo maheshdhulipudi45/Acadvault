@@ -74,7 +74,12 @@
   --pastel-pink: oklch(0.95 0.04 10);
   --pastel-indigo: oklch(0.95 0.04 270);
 
-  --gradient-hero: linear-gradient(135deg, oklch(0.96 0.04 295) 0%, oklch(0.97 0.03 240) 50%, oklch(0.96 0.05 160) 100%);
+  --gradient-hero: linear-gradient(
+    135deg,
+    oklch(0.96 0.04 295) 0%,
+    oklch(0.97 0.03 240) 50%,
+    oklch(0.96 0.05 160) 100%
+  );
   --gradient-primary: linear-gradient(135deg, oklch(0.58 0.22 285), oklch(0.68 0.2 305));
   --gradient-text: linear-gradient(135deg, oklch(0.55 0.24 285), oklch(0.62 0.22 305));
 
@@ -90,7 +95,8 @@
     border-color: var(--color-border);
   }
 
-  html, body {
+  html,
+  body {
     font-family: var(--font-display);
     -webkit-font-smoothing: antialiased;
   }
@@ -102,17 +108,27 @@
 }
 
 @layer utilities {
-  .bg-gradient-hero { background: var(--gradient-hero); }
-  .bg-gradient-primary { background: var(--gradient-primary); }
+  .bg-gradient-hero {
+    background: var(--gradient-hero);
+  }
+  .bg-gradient-primary {
+    background: var(--gradient-primary);
+  }
   .text-gradient {
     background: var(--gradient-text);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
-  .shadow-card { box-shadow: var(--shadow-card); }
-  .shadow-elevated { box-shadow: var(--shadow-elevated); }
-  .shadow-glow { box-shadow: var(--shadow-glow); }
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+  .shadow-elevated {
+    box-shadow: var(--shadow-elevated);
+  }
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
   .glass-card {
     background: oklch(1 0 0 / 0.7);
     backdrop-filter: blur(12px);
@@ -121,12 +137,25 @@
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-12px); }
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
 }
-.animate-float { animation: float 6s ease-in-out infinite; }
-.animate-float-delayed { animation: float 7s ease-in-out infinite; animation-delay: 1.5s; }
-.animate-float-slow { animation: float 9s ease-in-out infinite; animation-delay: 0.8s; }
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+.animate-float-delayed {
+  animation: float 7s ease-in-out infinite;
+  animation-delay: 1.5s;
+}
+.animate-float-slow {
+  animation: float 9s ease-in-out infinite;
+  animation-delay: 0.8s;
+}
 
 /* Slick Carousel custom styling overrides */
 .slick-slider {
@@ -211,14 +240,17 @@
 }
 
 /* Glassmorphic Slick Floating Navigation Arrows */
-.slick-prev, .slick-next {
+.slick-prev,
+.slick-next {
   width: 42px !important;
   height: 42px !important;
   background: oklch(1 0 0 / 0.8) !important;
   backdrop-filter: blur(8px) !important;
   border: 1px solid oklch(0.93 0.01 270 / 0.6) !important;
   border-radius: 9999px !important;
-  box-shadow: 0 4px 12px oklch(0 0 0 / 0.06), 0 0 0 1px oklch(1 0 0 / 0.05) !important;
+  box-shadow:
+    0 4px 12px oklch(0 0 0 / 0.06),
+    0 0 0 1px oklch(1 0 0 / 0.05) !important;
   z-index: 20 !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
   top: 50% !important;
@@ -230,25 +262,29 @@
 .slick-next {
   right: -15px !important;
 }
-.slick-prev:before, .slick-next:before {
-  font-family: 'slick' !important;
+.slick-prev:before,
+.slick-next:before {
+  font-family: "slick" !important;
   font-size: 16px !important;
   color: oklch(0.18 0.02 270) !important;
   opacity: 0.75 !important;
   transition: all 0.3s ease !important;
 }
-.slick-prev:hover, .slick-next:hover {
+.slick-prev:hover,
+.slick-next:hover {
   background: oklch(0.58 0.22 285) !important;
   border-color: oklch(0.58 0.22 285) !important;
   box-shadow: 0 10px 25px -5px oklch(0.58 0.22 285 / 0.4) !important;
 }
-.slick-prev:hover:before, .slick-next:hover:before {
+.slick-prev:hover:before,
+.slick-next:hover:before {
   color: oklch(1 0 0) !important;
   opacity: 1 !important;
 }
 /* Hide navigation arrows on mobile to keep layout pristine */
 @media (max-width: 640px) {
-  .slick-prev, .slick-next {
+  .slick-prev,
+  .slick-next {
     display: none !important;
   }
 }
@@ -260,6 +296,7 @@
 .slick-slide article:hover {
   transform: translateY(-8px) !important;
   border-color: rgba(99, 102, 241, 0.25) !important;
-  box-shadow: 0 20px 40px -10px oklch(0.58 0.22 285 / 0.12), 0 0 0 1px oklch(0.58 0.22 285 / 0.05) !important;
+  box-shadow:
+    0 20px 40px -10px oklch(0.58 0.22 285 / 0.12),
+    0 0 0 1px oklch(0.58 0.22 285 / 0.05) !important;
 }
-

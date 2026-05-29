@@ -1,12 +1,27 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { User, Loader2, Sparkles, Save, GraduationCap, FileText, CheckCircle2, UserCircle2 } from "lucide-react";
+import {
+  User,
+  Loader2,
+  Sparkles,
+  Save,
+  GraduationCap,
+  FileText,
+  CheckCircle2,
+  UserCircle2,
+} from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { apiFetch } from "@/lib/api";
 import { useAuth } from "@/lib/auth-context";
 import { authModal } from "@/lib/auth-modal";
@@ -17,12 +32,30 @@ export const Route = createFileRoute("/profile")({ component: ProfileDashboard }
 const BRANCHES = ["CSE", "ECE", "EEE", "ME", "CE", "IT", "AI/ML", "MCA"];
 
 const PRESET_AVATARS = [
-  { name: "Avatar 1", url: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop&q=80" },
-  { name: "Avatar 2", url: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80" },
-  { name: "Avatar 3", url: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=150&auto=format&fit=crop&q=80" },
-  { name: "Avatar 4", url: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&auto=format&fit=crop&q=80" },
-  { name: "Avatar 5", url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80" },
-  { name: "Avatar 6", url: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80" }
+  {
+    name: "Avatar 1",
+    url: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop&q=80",
+  },
+  {
+    name: "Avatar 2",
+    url: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80",
+  },
+  {
+    name: "Avatar 3",
+    url: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=150&auto=format&fit=crop&q=80",
+  },
+  {
+    name: "Avatar 4",
+    url: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&auto=format&fit=crop&q=80",
+  },
+  {
+    name: "Avatar 5",
+    url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
+  },
+  {
+    name: "Avatar 6",
+    url: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+  },
 ];
 
 function ProfileDashboard() {
@@ -34,7 +67,7 @@ function ProfileDashboard() {
     college_name: "",
     branch: "",
     bio: "",
-    profile_image: ""
+    profile_image: "",
   });
 
   useEffect(() => {
@@ -50,7 +83,7 @@ function ProfileDashboard() {
         college_name: user.college_name || "",
         branch: user.branch || "",
         bio: user.bio || "",
-        profile_image: user.profile_image || ""
+        profile_image: user.profile_image || "",
       });
     }
   }, [user]);
@@ -71,7 +104,9 @@ function ProfileDashboard() {
         <div className="flex min-h-[50vh] flex-col items-center justify-center p-8 text-center">
           <UserCircle2 className="h-16 w-16 text-muted-foreground/40 mb-4" />
           <h2 className="text-xl font-bold">Access Denied</h2>
-          <p className="text-muted-foreground mt-1 max-w-sm">Please sign in to view your account settings.</p>
+          <p className="text-muted-foreground mt-1 max-w-sm">
+            Please sign in to view your account settings.
+          </p>
         </div>
       </SiteLayout>
     );
@@ -88,7 +123,7 @@ function ProfileDashboard() {
     try {
       const response = await apiFetch("/auth/profile", {
         method: "PUT",
-        body: JSON.stringify(form)
+        body: JSON.stringify(form),
       });
 
       if (response && response.user) {
@@ -115,13 +150,20 @@ function ProfileDashboard() {
               <GraduationCap className="h-24 w-24 text-purple-600" />
             </div>
             <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-2 text-slate-900">
-              Edit <span className="bg-gradient-to-r from-purple-600 via-violet-600 to-indigo-600 bg-clip-text text-transparent">Profile</span>
+              Edit{" "}
+              <span className="bg-gradient-to-r from-purple-600 via-violet-600 to-indigo-600 bg-clip-text text-transparent">
+                Profile
+              </span>
             </h1>
-            <p className="text-muted-foreground font-semibold">Customize your AcadVault student profile and showcase your contributions.</p>
+            <p className="text-muted-foreground font-semibold">
+              Customize your AcadVault student profile and showcase your contributions.
+            </p>
           </div>
 
-          <form onSubmit={saveProfile} className="space-y-8 bg-white rounded-3xl border border-border/60 p-6 md:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.02)]">
-            
+          <form
+            onSubmit={saveProfile}
+            className="space-y-8 bg-white rounded-3xl border border-border/60 p-6 md:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.02)]"
+          >
             {/* Profile Picture Selection */}
             <div>
               <Label className="mb-3 block font-bold text-slate-800">Choose Profile Avatar</Label>
@@ -134,10 +176,16 @@ function ProfileDashboard() {
                       type="button"
                       onClick={() => setForm({ ...form, profile_image: avatar.url })}
                       className={`relative rounded-full aspect-square overflow-hidden border-2 transition-all p-0.5 hover:scale-105 cursor-pointer ${
-                        isSelected ? "border-purple-600 shadow-md" : "border-slate-200 hover:border-purple-300"
+                        isSelected
+                          ? "border-purple-600 shadow-md"
+                          : "border-slate-200 hover:border-purple-300"
                       }`}
                     >
-                      <img src={avatar.url} className="w-full h-full object-cover rounded-full" alt={avatar.name} />
+                      <img
+                        src={avatar.url}
+                        className="w-full h-full object-cover rounded-full"
+                        alt={avatar.name}
+                      />
                       {isSelected && (
                         <div className="absolute inset-0 bg-purple-600/10 flex items-center justify-center">
                           <CheckCircle2 className="h-5 w-5 text-purple-600 bg-white rounded-full shadow-sm" />
@@ -148,7 +196,9 @@ function ProfileDashboard() {
                 })}
               </div>
               <div className="space-y-2">
-                <Label htmlFor="custom_avatar" className="text-zinc-500 text-xs font-semibold">Or use a custom image URL</Label>
+                <Label htmlFor="custom_avatar" className="text-zinc-500 text-xs font-semibold">
+                  Or use a custom image URL
+                </Label>
                 <Input
                   id="custom_avatar"
                   value={form.profile_image}
@@ -163,7 +213,9 @@ function ProfileDashboard() {
             <div className="space-y-5">
               <div className="grid sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="full_name" className="font-bold text-slate-800">Full Name <span className="text-destructive">*</span></Label>
+                  <Label htmlFor="full_name" className="font-bold text-slate-800">
+                    Full Name <span className="text-destructive">*</span>
+                  </Label>
                   <Input
                     id="full_name"
                     required
@@ -174,15 +226,22 @@ function ProfileDashboard() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="branch" className="font-bold text-slate-800">Branch / Major</Label>
-                  <Select value={form.branch || "none"} onValueChange={(v) => setForm({ ...form, branch: v === "none" ? "" : v })}>
+                  <Label htmlFor="branch" className="font-bold text-slate-800">
+                    Branch / Major
+                  </Label>
+                  <Select
+                    value={form.branch || "none"}
+                    onValueChange={(v) => setForm({ ...form, branch: v === "none" ? "" : v })}
+                  >
                     <SelectTrigger className="rounded-xl border-border/60">
                       <SelectValue placeholder="Select Branch" />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="none">None specified</SelectItem>
                       {BRANCHES.map((b) => (
-                        <SelectItem key={b} value={b}>{b}</SelectItem>
+                        <SelectItem key={b} value={b}>
+                          {b}
+                        </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
@@ -190,7 +249,9 @@ function ProfileDashboard() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="college_name" className="font-bold text-slate-800">College / University Name <span className="text-destructive">*</span></Label>
+                <Label htmlFor="college_name" className="font-bold text-slate-800">
+                  College / University Name <span className="text-destructive">*</span>
+                </Label>
                 <Input
                   id="college_name"
                   required
@@ -202,7 +263,9 @@ function ProfileDashboard() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="bio" className="font-bold text-slate-800">Short Bio</Label>
+                <Label htmlFor="bio" className="font-bold text-slate-800">
+                  Short Bio
+                </Label>
                 <Textarea
                   id="bio"
                   value={form.bio}
@@ -241,7 +304,6 @@ function ProfileDashboard() {
                 Cancel
               </Button>
             </div>
-
           </form>
         </div>
       </div>

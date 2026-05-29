@@ -47,7 +47,10 @@ function ForgotPage() {
 
       <div className="w-full max-w-md relative z-10">
         {/* Back Link */}
-        <Link to="/login" className="inline-flex items-center text-sm text-zinc-400 hover:text-white mb-6 transition-colors group">
+        <Link
+          to="/login"
+          className="inline-flex items-center text-sm text-zinc-400 hover:text-white mb-6 transition-colors group"
+        >
           <ArrowLeft className="h-4 w-4 mr-1.5 transition-transform group-hover:-translate-x-1" />
           Back to login
         </Link>
@@ -77,7 +80,10 @@ function ForgotPage() {
                 <Sparkles className="h-5 w-5 shrink-0 mt-0.5" />
                 <div>
                   <p className="font-semibold">Mock Email Dispatched</p>
-                  <p className="text-xs text-emerald-400/80 mt-1">In development mode, you can directly set a new password by going to the reset page.</p>
+                  <p className="text-xs text-emerald-400/80 mt-1">
+                    In development mode, you can directly set a new password by going to the reset
+                    page.
+                  </p>
                 </div>
               </div>
               <Link to="/reset-password" className="block">

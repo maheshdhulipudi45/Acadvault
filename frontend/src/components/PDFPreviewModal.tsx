@@ -1,11 +1,6 @@
 import { useState, useEffect } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -79,7 +74,7 @@ export function PDFPreviewModal() {
   // Helper to parse YouTube IDs
   const getYoutubeEmbed = (url: string) => {
     if (!url) return null;
-    const reg = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    const reg = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
     const match = url.match(reg);
     return match && match[2].length === 11 ? `https://www.youtube.com/embed/${match[2]}` : null;
   };
@@ -90,11 +85,14 @@ export function PDFPreviewModal() {
 
   // User relations
   const isLiked = user && detail.likes?.includes(user.id);
-  
+
   // Calculate average rating
-  const avgRating = detail.ratings && detail.ratings.length > 0
-    ? (detail.ratings.reduce((sum: number, r: any) => sum + r.score, 0) / detail.ratings.length).toFixed(1)
-    : "N/A";
+  const avgRating =
+    detail.ratings && detail.ratings.length > 0
+      ? (
+          detail.ratings.reduce((sum: number, r: any) => sum + r.score, 0) / detail.ratings.length
+        ).toFixed(1)
+      : "N/A";
 
   // Check if current user has rated
   const userRating = user ? detail.ratings?.find((r: any) => r.user_id === user.id)?.score : 0;
@@ -203,7 +201,9 @@ export function PDFPreviewModal() {
         {/* Ambient Top Bar */}
         <div className="flex h-14 border-b border-white/[0.06] items-center px-6 justify-between shrink-0 bg-slate-900/40">
           <div className="flex items-center gap-2">
-            <span className={`inline-flex px-2 py-0.5 rounded text-[10px] font-bold tracking-wide uppercase ${meta.color}`}>
+            <span
+              className={`inline-flex px-2 py-0.5 rounded text-[10px] font-bold tracking-wide uppercase ${meta.color}`}
+            >
               {meta.label}
             </span>
             <span className="text-xs text-slate-400 font-semibold truncate hidden sm:inline-block">
@@ -220,7 +220,6 @@ export function PDFPreviewModal() {
         {/* Modal Body Scroll Container */}
         <div className="flex-1 overflow-y-auto p-6 md:p-8 space-y-8">
           <div className="grid md:grid-cols-5 gap-8">
-            
             {/* Left Preview Grid Area (3 Cols) */}
             <div className="md:col-span-3 space-y-6 flex flex-col h-full min-h-[300px] md:min-h-[420px]">
               <div className="flex-1 rounded-2xl overflow-hidden bg-slate-900/60 border border-white/[0.06] relative flex flex-col justify-center items-center p-1">
@@ -245,7 +244,13 @@ export function PDFPreviewModal() {
                 ) : (
                   <div className="text-center p-8 max-w-sm flex flex-col items-center">
                     <div className="h-16 w-16 rounded-2xl bg-white/[0.03] border border-white/[0.06] flex items-center justify-center text-slate-400 mb-4">
-                      {isGithub ? <Github className="h-8 w-8 text-white" /> : isDrive ? <FileText className="h-8 w-8 text-sky-400" /> : <ExternalLink className="h-8 w-8 text-violet-400" />}
+                      {isGithub ? (
+                        <Github className="h-8 w-8 text-white" />
+                      ) : isDrive ? (
+                        <FileText className="h-8 w-8 text-sky-400" />
+                      ) : (
+                        <ExternalLink className="h-8 w-8 text-violet-400" />
+                      )}
                     </div>
                     <h3 className="font-bold text-base mb-1">External Educational Resource</h3>
                     <p className="text-slate-400 text-xs mb-6">
@@ -267,7 +272,9 @@ export function PDFPreviewModal() {
                   onClick={handleLike}
                   variant="outline"
                   className={`flex-1 h-11 rounded-xl border-white/[0.08] hover:bg-white/[0.04] transition-all cursor-pointer ${
-                    isLiked ? "bg-red-500/10 border-red-500/30 text-red-500 hover:bg-red-500/20 hover:text-red-500" : "text-slate-300"
+                    isLiked
+                      ? "bg-red-500/10 border-red-500/30 text-red-500 hover:bg-red-500/20 hover:text-red-500"
+                      : "text-slate-300"
                   }`}
                 >
                   <Heart className={`h-4 w-4 mr-2 ${isLiked ? "fill-current" : ""}`} />
@@ -277,7 +284,9 @@ export function PDFPreviewModal() {
                   onClick={handleBookmark}
                   variant="outline"
                   className={`h-11 w-11 p-0 rounded-xl border-white/[0.08] hover:bg-white/[0.04] cursor-pointer ${
-                    user?.bookmarks?.includes(detail.id) ? "bg-violet-500/10 border-violet-500/30 text-violet-400" : "text-slate-350"
+                    user?.bookmarks?.includes(detail.id)
+                      ? "bg-violet-500/10 border-violet-500/30 text-violet-400"
+                      : "text-slate-350"
                   }`}
                 >
                   <Bookmark className="h-4 w-4" />
@@ -293,12 +302,21 @@ export function PDFPreviewModal() {
 
               {/* Flag Report Expandable overlay */}
               {reportOpen && (
-                <form onSubmit={submitReport} className="p-4 bg-slate-900/70 border border-amber-500/20 rounded-2xl space-y-3">
+                <form
+                  onSubmit={submitReport}
+                  className="p-4 bg-slate-900/70 border border-amber-500/20 rounded-2xl space-y-3"
+                >
                   <div className="flex justify-between items-center">
                     <span className="text-xs font-bold text-amber-400 flex items-center gap-1">
                       <AlertOctagon className="h-3.5 w-3.5" /> Flag Resource
                     </span>
-                    <button type="button" onClick={() => setReportOpen(false)} className="text-[10px] text-slate-400 hover:text-white">Cancel</button>
+                    <button
+                      type="button"
+                      onClick={() => setReportOpen(false)}
+                      className="text-[10px] text-slate-400 hover:text-white"
+                    >
+                      Cancel
+                    </button>
                   </div>
                   <div className="grid grid-cols-2 gap-2 text-xs">
                     {["Spam", "Broken Link", "Duplicate", "Fake Material"].map((r) => (
@@ -350,35 +368,52 @@ export function PDFPreviewModal() {
 
                 <div className="space-y-3.5">
                   <div className="p-3 bg-white/[0.02] border border-white/[0.05] rounded-xl text-xs space-y-2">
-                    <p className="text-slate-400 text-[10px] font-bold uppercase tracking-wider">Contributor Info</p>
+                    <p className="text-slate-400 text-[10px] font-bold uppercase tracking-wider">
+                      Contributor Info
+                    </p>
                     <div className="flex items-center gap-2">
                       <div className="h-7 w-7 rounded-full bg-violet-600/30 flex items-center justify-center font-bold text-xs">
                         {detail.uploader_name?.charAt(0) || "S"}
                       </div>
                       <div>
-                        <p className="font-extrabold text-white">{detail.uploader_name || "Anonymous Student"}</p>
-                        <p className="text-[10px] text-slate-500 font-semibold">{detail.college || "AcadVault University"}</p>
+                        <p className="font-extrabold text-white">
+                          {detail.uploader_name || "Anonymous Student"}
+                        </p>
+                        <p className="text-[10px] text-slate-500 font-semibold">
+                          {detail.college || "AcadVault University"}
+                        </p>
                       </div>
                     </div>
                   </div>
 
                   {detail.description && (
                     <div className="p-3 bg-white/[0.02] border border-white/[0.05] rounded-xl text-xs">
-                      <p className="text-slate-400 text-[10px] font-bold uppercase tracking-wider mb-1">Details</p>
-                      <p className="text-slate-300 leading-relaxed font-medium">{detail.description}</p>
+                      <p className="text-slate-400 text-[10px] font-bold uppercase tracking-wider mb-1">
+                        Details
+                      </p>
+                      <p className="text-slate-300 leading-relaxed font-medium">
+                        {detail.description}
+                      </p>
                     </div>
                   )}
 
                   <div className="grid grid-cols-2 gap-2 text-xs">
                     <div className="p-2.5 bg-white/[0.02] border border-white/[0.05] rounded-xl">
-                      <p className="text-slate-500 text-[10px] font-bold uppercase mb-0.5">Rating</p>
+                      <p className="text-slate-500 text-[10px] font-bold uppercase mb-0.5">
+                        Rating
+                      </p>
                       <p className="font-extrabold text-white flex items-center gap-1">
                         <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
-                        {avgRating} <span className="text-[10px] text-slate-500 font-semibold">({detail.ratings?.length ?? 0})</span>
+                        {avgRating}{" "}
+                        <span className="text-[10px] text-slate-500 font-semibold">
+                          ({detail.ratings?.length ?? 0})
+                        </span>
                       </p>
                     </div>
                     <div className="p-2.5 bg-white/[0.02] border border-white/[0.05] rounded-xl">
-                      <p className="text-slate-500 text-[10px] font-bold uppercase mb-0.5">Downloads</p>
+                      <p className="text-slate-500 text-[10px] font-bold uppercase mb-0.5">
+                        Downloads
+                      </p>
                       <p className="font-extrabold text-white">{formatNum(detail.downloads)}</p>
                     </div>
                   </div>
@@ -386,7 +421,9 @@ export function PDFPreviewModal() {
 
                 {/* Rating Picker */}
                 <div className="space-y-2 pb-4 border-b border-white/[0.06]">
-                  <p className="text-slate-450 text-[11px] font-bold uppercase tracking-wide">Rate this material</p>
+                  <p className="text-slate-450 text-[11px] font-bold uppercase tracking-wide">
+                    Rate this material
+                  </p>
                   <div className="flex items-center gap-1.5">
                     {[1, 2, 3, 4, 5].map((num) => (
                       <button
@@ -425,7 +462,9 @@ export function PDFPreviewModal() {
           {/* Recommendations Area */}
           {recs && recs.length > 0 && (
             <div className="pt-6 border-t border-white/[0.06] space-y-4">
-              <h3 className="text-sm font-bold text-slate-300 uppercase tracking-wider">Related study materials</h3>
+              <h3 className="text-sm font-bold text-slate-300 uppercase tracking-wider">
+                Related study materials
+              </h3>
               <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
                 {recs.map((r: any) => {
                   const rMeta = fileMeta(r.file_type);
@@ -435,12 +474,16 @@ export function PDFPreviewModal() {
                       onClick={() => previewModal.show(r)}
                       className="p-3 bg-white/[0.02] border border-white/[0.05] rounded-2xl cursor-pointer hover:bg-white/[0.04] transition-all flex items-center gap-3"
                     >
-                      <div className={`h-10 w-10 flex items-center justify-center rounded-xl font-bold text-[10px] shrink-0 ${rMeta.color}`}>
+                      <div
+                        className={`h-10 w-10 flex items-center justify-center rounded-xl font-bold text-[10px] shrink-0 ${rMeta.color}`}
+                      >
                         {rMeta.label}
                       </div>
                       <div className="min-w-0 flex-1">
                         <p className="text-xs font-bold truncate text-slate-100">{r.title}</p>
-                        <p className="text-[10px] text-slate-500 truncate font-semibold mt-0.5">{r.subject}</p>
+                        <p className="text-[10px] text-slate-500 truncate font-semibold mt-0.5">
+                          {r.subject}
+                        </p>
                       </div>
                       <ChevronRight className="h-4 w-4 text-slate-600 shrink-0" />
                     </div>

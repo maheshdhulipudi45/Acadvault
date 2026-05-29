@@ -43,14 +43,14 @@ function SignupPage() {
             data: {
               full_name: form.full_name,
               college_name: form.college_name,
-            }
-          }
+            },
+          },
         });
         if (sbRes.error) {
           // Sign-up failed (e.g. user already registered), attempt signing in instead
           await supabase.auth.signInWithPassword({
             email: form.email,
-            password: form.password
+            password: form.password,
           });
         }
       } catch (sbErr) {
@@ -58,7 +58,7 @@ function SignupPage() {
         try {
           await supabase.auth.signInWithPassword({
             email: form.email,
-            password: form.password
+            password: form.password,
           });
         } catch (e) {
           console.warn("Supabase Auth registration and sign-in fallback failed:", e);
@@ -100,7 +100,6 @@ function SignupPage() {
       <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
 
       <div className="w-full max-w-md relative z-10 my-8">
-
         {/* Logo */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -127,7 +126,9 @@ function SignupPage() {
           className="backdrop-blur-xl bg-white/[0.03] border border-white/[0.08] rounded-3xl p-8 shadow-[0_0_50px_-12px_rgba(139,92,246,0.2)]"
         >
           <h1 className="text-2xl font-bold text-white mb-1.5">Create your account</h1>
-          <p className="text-zinc-400 text-sm mb-6">Join thousands of students learning smarter together.</p>
+          <p className="text-zinc-400 text-sm mb-6">
+            Join thousands of students learning smarter together.
+          </p>
 
           <form onSubmit={submit} className="space-y-4">
             <div className="space-y-2">
@@ -191,16 +192,15 @@ function SignupPage() {
               disabled={loading}
               className="w-full h-11 rounded-xl bg-gradient-primary text-white hover:opacity-90 shadow-glow font-semibold transition-all mt-4 cursor-pointer flex items-center justify-center gap-2"
             >
-              {loading ? (
-                <Loader2 className="h-4 w-4 animate-spin" />
-              ) : (
-                <>Sign Up</>
-              )}
+              {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <>Sign Up</>}
             </Button>
 
             <p className="text-center text-xs text-zinc-400 mt-4">
               Already have an account?{" "}
-              <Link to="/login" className="text-violet-400 font-bold hover:text-violet-300 hover:underline transition-colors">
+              <Link
+                to="/login"
+                className="text-violet-400 font-bold hover:text-violet-300 hover:underline transition-colors"
+              >
                 Access your vault
               </Link>
             </p>

@@ -39,8 +39,20 @@ function MyUploads() {
     }
   };
 
-  if (loading || isLoading) return <SiteLayout><div className="p-16 text-center"><Loader2 className="animate-spin mx-auto" /></div></SiteLayout>;
-  if (!user) return <SiteLayout><div className="p-16 text-center text-muted-foreground">Please log in.</div></SiteLayout>;
+  if (loading || isLoading)
+    return (
+      <SiteLayout>
+        <div className="p-16 text-center">
+          <Loader2 className="animate-spin mx-auto" />
+        </div>
+      </SiteLayout>
+    );
+  if (!user)
+    return (
+      <SiteLayout>
+        <div className="p-16 text-center text-muted-foreground">Please log in.</div>
+      </SiteLayout>
+    );
 
   return (
     <SiteLayout>
@@ -58,30 +70,49 @@ function MyUploads() {
             </Link>
           </div>
 
-          {(!items || items.length === 0) ? (
+          {!items || items.length === 0 ? (
             <div className="text-center py-20 rounded-2xl border border-dashed">
               <p className="font-medium mb-2">No uploads yet</p>
-              <p className="text-sm text-muted-foreground mb-4">Share your first resource with the community.</p>
-              <Link to="/upload"><Button className="rounded-lg bg-gradient-primary text-primary-foreground">Upload Now</Button></Link>
+              <p className="text-sm text-muted-foreground mb-4">
+                Share your first resource with the community.
+              </p>
+              <Link to="/upload">
+                <Button className="rounded-lg bg-gradient-primary text-primary-foreground">
+                  Upload Now
+                </Button>
+              </Link>
             </div>
           ) : (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {items.map((r) => {
                 const meta = fileMeta(r.file_type);
                 return (
-                  <div key={r.id} className="bg-white border border-border/60 rounded-2xl p-5 hover:shadow-elevated transition-all">
+                  <div
+                    key={r.id}
+                    className="bg-white border border-border/60 rounded-2xl p-5 hover:shadow-elevated transition-all"
+                  >
                     <div className="flex items-start gap-3 mb-4">
-                      <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${meta.color} font-bold text-xs shrink-0`}>{meta.label}</div>
+                      <div
+                        className={`flex h-12 w-12 items-center justify-center rounded-xl ${meta.color} font-bold text-xs shrink-0`}
+                      >
+                        {meta.label}
+                      </div>
                       <div className="min-w-0 flex-1">
-                        <div className="font-semibold text-sm leading-snug line-clamp-2">{r.title}</div>
+                        <div className="font-semibold text-sm leading-snug line-clamp-2">
+                          {r.title}
+                        </div>
                         <div className="text-xs text-muted-foreground mt-1">{r.resource_type}</div>
                       </div>
                     </div>
                     <div className="flex items-center justify-between pt-3 border-t border-border/60 text-xs text-muted-foreground">
                       <span className="inline-flex items-center gap-1">
-                        <Download className="h-3.5 w-3.5" /> {formatNum(r.downloads)} • {timeAgo(r.created_at)}
+                        <Download className="h-3.5 w-3.5" /> {formatNum(r.downloads)} •{" "}
+                        {timeAgo(r.created_at)}
                       </span>
-                      <button onClick={() => del(r.id, r.file_path)} className="text-destructive hover:bg-destructive/10 p-1.5 rounded-md">
+                      <button
+                        onClick={() => del(r.id, r.file_path)}
+                        className="text-destructive hover:bg-destructive/10 p-1.5 rounded-md"
+                      >
                         <Trash2 className="h-4 w-4" />
                       </button>
                     </div>

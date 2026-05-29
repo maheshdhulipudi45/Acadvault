@@ -12,7 +12,6 @@ import { AuthProvider } from "@/lib/auth-context";
 
 import appCss from "../styles.css?url";
 
-
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -76,9 +75,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "AcadVault — One Place for All Your Academic Needs" },
-      { name: "description", content: "Share notes, discover useful resources and help students learn smarter together. Free academic resource sharing for students worldwide." },
+      {
+        name: "description",
+        content:
+          "Share notes, discover useful resources and help students learn smarter together. Free academic resource sharing for students worldwide.",
+      },
       { property: "og:title", content: "AcadVault — Share Knowledge. Empower Students." },
-      { property: "og:description", content: "Upload notes, discover useful resources and help students learn smarter together." },
+      {
+        property: "og:description",
+        content:
+          "Upload notes, discover useful resources and help students learn smarter together.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -86,7 +93,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap",
+      },
     ],
   }),
 
@@ -122,4 +132,3 @@ function RootComponent() {
     </QueryClientProvider>
   );
 }
-

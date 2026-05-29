@@ -6,9 +6,46 @@ import SliderImport from "react-slick";
 const Slider = (SliderImport as any).default || SliderImport;
 import { toast } from "sonner";
 import {
-  ArrowRight, Upload, FileText, FlaskConical, ClipboardList, BookOpen, Library, GraduationCap,
-  Sparkles, Star, Download, Users, Layers, Zap, Heart, Database, Cpu, Network, Coffee, Code2, Globe, Brain, Rocket, Trophy, Medal, Award, MoreVertical, Search, Lock, ShieldAlert, ArrowDown, HelpCircle, ChevronDown, ChevronLeft, ChevronRight,
-  Youtube, Github, FolderOpen, Play, CheckCircle
+  ArrowRight,
+  Upload,
+  FileText,
+  FlaskConical,
+  ClipboardList,
+  BookOpen,
+  Library,
+  GraduationCap,
+  Sparkles,
+  Star,
+  Download,
+  Users,
+  Layers,
+  Zap,
+  Heart,
+  Database,
+  Cpu,
+  Network,
+  Coffee,
+  Code2,
+  Globe,
+  Brain,
+  Rocket,
+  Trophy,
+  Medal,
+  Award,
+  MoreVertical,
+  Search,
+  Lock,
+  ShieldAlert,
+  ArrowDown,
+  HelpCircle,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  Youtube,
+  Github,
+  FolderOpen,
+  Play,
+  CheckCircle,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SiteLayout } from "@/components/SiteLayout";
@@ -18,35 +55,93 @@ import { authModal } from "@/lib/auth-modal";
 import { useAuth } from "@/lib/auth-context";
 import { previewModal } from "@/lib/preview-modal";
 
-
-
 export const Route = createFileRoute("/")({ component: Home });
 
 const categories = [
-  { name: "Notes", count: "15,000+", Icon: FileText, bg: "bg-pastel-purple", iconBg: "bg-white", color: "text-violet-600" },
-  { name: "Previous Papers", count: "10,000+", Icon: FileText, bg: "bg-pastel-blue", iconBg: "bg-white", color: "text-blue-600" },
-  { name: "Lab Records", count: "8,000+", Icon: FlaskConical, bg: "bg-pastel-green", iconBg: "bg-white", color: "text-emerald-600" },
-  { name: "Assignments", count: "12,000+", Icon: ClipboardList, bg: "bg-pastel-orange", iconBg: "bg-white", color: "text-orange-600" },
-  { name: "Study Materials", count: "20,000+", Icon: BookOpen, bg: "bg-pastel-pink", iconBg: "bg-white", color: "text-rose-600" },
-  { name: "Books & References", count: "5,000+", Icon: Library, bg: "bg-pastel-indigo", iconBg: "bg-white", color: "text-indigo-600" },
+  {
+    name: "Notes",
+    count: "15,000+",
+    Icon: FileText,
+    bg: "bg-pastel-purple",
+    iconBg: "bg-white",
+    color: "text-violet-600",
+  },
+  {
+    name: "Previous Papers",
+    count: "10,000+",
+    Icon: FileText,
+    bg: "bg-pastel-blue",
+    iconBg: "bg-white",
+    color: "text-blue-600",
+  },
+  {
+    name: "Lab Records",
+    count: "8,000+",
+    Icon: FlaskConical,
+    bg: "bg-pastel-green",
+    iconBg: "bg-white",
+    color: "text-emerald-600",
+  },
+  {
+    name: "Assignments",
+    count: "12,000+",
+    Icon: ClipboardList,
+    bg: "bg-pastel-orange",
+    iconBg: "bg-white",
+    color: "text-orange-600",
+  },
+  {
+    name: "Study Materials",
+    count: "20,000+",
+    Icon: BookOpen,
+    bg: "bg-pastel-pink",
+    iconBg: "bg-white",
+    color: "text-rose-600",
+  },
+  {
+    name: "Books & References",
+    count: "5,000+",
+    Icon: Library,
+    bg: "bg-pastel-indigo",
+    iconBg: "bg-white",
+    color: "text-indigo-600",
+  },
 ];
 
 const contributorAvatars = [
   "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=80&auto=format&fit=crop&q=80",
   "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&auto=format&fit=crop&q=80",
   "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=80&auto=format&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&auto=format&fit=crop&q=80"
+  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&auto=format&fit=crop&q=80",
 ];
 const contributorNames = ["John Doe", "Jane Smith", "Alex Johnson", "Michael Lee"];
 const contributorTimes = ["1 hour ago", "2 hours ago", "3 hours ago", "5 hours ago"];
 
 const PRESET_AVATARS = [
-  { name: "Avatar 1", url: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop&q=80" },
-  { name: "Avatar 2", url: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80" },
-  { name: "Avatar 3", url: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=150&auto=format&fit=crop&q=80" },
-  { name: "Avatar 4", url: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&auto=format&fit=crop&q=80" },
-  { name: "Avatar 5", url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80" },
-  { name: "Avatar 6", url: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80" }
+  {
+    name: "Avatar 1",
+    url: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop&q=80",
+  },
+  {
+    name: "Avatar 2",
+    url: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80",
+  },
+  {
+    name: "Avatar 3",
+    url: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=150&auto=format&fit=crop&q=80",
+  },
+  {
+    name: "Avatar 4",
+    url: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&auto=format&fit=crop&q=80",
+  },
+  {
+    name: "Avatar 5",
+    url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
+  },
+  {
+    name: "Avatar 6",
+    url: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+  },
 ];
 
 const SlickPrevArrow = (props: any) => {
@@ -64,7 +159,9 @@ const SlickPrevArrow = (props: any) => {
       style={{ ...style, display: "flex" }}
       aria-label="Previous Slide"
     >
-      <ChevronLeft className={`h-5 w-5 ${isDisabled ? "text-slate-400" : "text-slate-655 group-hover:text-white transition-colors duration-200"}`} />
+      <ChevronLeft
+        className={`h-5 w-5 ${isDisabled ? "text-slate-400" : "text-slate-655 group-hover:text-white transition-colors duration-200"}`}
+      />
     </button>
   );
 };
@@ -84,7 +181,9 @@ const SlickNextArrow = (props: any) => {
       style={{ ...style, display: "flex" }}
       aria-label="Next Slide"
     >
-      <ChevronRight className={`h-5 w-5 ${isDisabled ? "text-slate-400" : "text-slate-655 group-hover:text-white transition-colors duration-200"}`} />
+      <ChevronRight
+        className={`h-5 w-5 ${isDisabled ? "text-slate-400" : "text-slate-655 group-hover:text-white transition-colors duration-200"}`}
+      />
     </button>
   );
 };
@@ -104,15 +203,15 @@ function Home() {
     const handleType = () => {
       const i = loopNum % words.length;
       const fullWord = words[i];
-      
+
       setTypedText(
         isDeleting
           ? fullWord.substring(0, typedText.length - 1)
-          : fullWord.substring(0, typedText.length + 1)
+          : fullWord.substring(0, typedText.length + 1),
       );
-      
+
       setTypingSpeed(isDeleting ? 75 : 150);
-      
+
       if (!isDeleting && typedText === fullWord) {
         setTimeout(() => setIsDeleting(true), 2000);
       } else if (isDeleting && typedText === "") {
@@ -120,7 +219,7 @@ function Home() {
         setLoopNum(loopNum + 1);
       }
     };
-    
+
     const timer = setTimeout(handleType, typingSpeed);
     return () => clearTimeout(timer);
   }, [typedText, isDeleting, loopNum, typingSpeed]);
@@ -158,9 +257,10 @@ function Home() {
   // Dynamic Orbit Note download count helper
   const getDownloads = (title: string, defaultVal: string) => {
     if (!allResources) return defaultVal;
-    const matches = allResources.filter((r: any) =>
-      r.title.toLowerCase().includes(title.toLowerCase()) ||
-      (r.subject && r.subject.toLowerCase().includes(title.toLowerCase()))
+    const matches = allResources.filter(
+      (r: any) =>
+        r.title.toLowerCase().includes(title.toLowerCase()) ||
+        (r.subject && r.subject.toLowerCase().includes(title.toLowerCase())),
     );
     if (matches.length === 0) return defaultVal;
     const total = matches.reduce((sum: number, r: any) => sum + (r.downloads ?? 0), 0);
@@ -221,15 +321,16 @@ function Home() {
       if (idx < trending.length) {
         const t = trending[idx];
         const shortTitle = t.title.length > 18 ? t.title.substring(0, 16) + "..." : t.title;
-        
+
         let icon = def.icon;
         if (t.file_type === "pdf") icon = <FileText className="h-5 w-5" />;
         else if (t.file_type === "zip") icon = <Layers className="h-5 w-5" />;
-        else if (t.file_type === "docx" || t.file_type === "doc") icon = <ClipboardList className="h-5 w-5" />;
-        
+        else if (t.file_type === "docx" || t.file_type === "doc")
+          icon = <ClipboardList className="h-5 w-5" />;
+
         return {
           title: shortTitle,
-          downloads: `${t.downloads} ${t.downloads === 1 ? 'Download' : 'Downloads'}`,
+          downloads: `${t.downloads} ${t.downloads === 1 ? "Download" : "Downloads"}`,
           icon: icon,
           bgColor: def.bgColor,
           shadowColor: def.shadowColor,
@@ -259,7 +360,10 @@ function Home() {
     // Auto-repair legacy URLs missing '/public/' segment to prevent Supabase 400 Bad Request
     let fileUrl = r.file_url;
     if (fileUrl && fileUrl.includes("/storage/v1/object/resources/")) {
-      fileUrl = fileUrl.replace("/storage/v1/object/resources/", "/storage/v1/object/public/resources/");
+      fileUrl = fileUrl.replace(
+        "/storage/v1/object/resources/",
+        "/storage/v1/object/public/resources/",
+      );
     }
     window.open(fileUrl, "_blank");
     try {
@@ -288,34 +392,40 @@ function Home() {
         breakpoint: 1280,
         settings: {
           slidesToShow: 3,
-        }
+        },
       },
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: 2,
           arrows: false,
-        }
+        },
       },
       {
         breakpoint: 640,
         settings: {
           slidesToShow: 1,
           arrows: false,
-        }
-      }
-    ]
+        },
+      },
+    ],
   };
 
-  const latestCarouselSettings = useMemo(() => ({
-    ...carouselSettings,
-    infinite: latest ? latest.length > 4 : false,
-  }), [latest]);
+  const latestCarouselSettings = useMemo(
+    () => ({
+      ...carouselSettings,
+      infinite: latest ? latest.length > 4 : false,
+    }),
+    [latest],
+  );
 
-  const trendingCarouselSettings = useMemo(() => ({
-    ...carouselSettings,
-    infinite: trending ? trending.length > 4 : false,
-  }), [trending]);
+  const trendingCarouselSettings = useMemo(
+    () => ({
+      ...carouselSettings,
+      infinite: trending ? trending.length > 4 : false,
+    }),
+    [trending],
+  );
 
   const subjectsSettings = {
     dots: false,
@@ -334,23 +444,23 @@ function Home() {
         breakpoint: 1280,
         settings: {
           slidesToShow: 4,
-        }
+        },
       },
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: 3,
           arrows: false,
-        }
+        },
       },
       {
         breakpoint: 640,
         settings: {
           slidesToShow: 2,
           arrows: false,
-        }
-      }
-    ]
+        },
+      },
+    ],
   };
 
   const contributorsSettings = {
@@ -370,36 +480,39 @@ function Home() {
         breakpoint: 1280,
         settings: {
           slidesToShow: 4,
-        }
+        },
       },
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: 3,
           arrows: false,
-        }
+        },
       },
       {
         breakpoint: 768,
         settings: {
           slidesToShow: 2,
           arrows: false,
-        }
+        },
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
           arrows: false,
-        }
-      }
-    ]
+        },
+      },
+    ],
   };
 
-  const dynamicContributorsSettings = useMemo(() => ({
-    ...contributorsSettings,
-    infinite: contributors ? contributors.length > 5 : false,
-  }), [contributors]);
+  const dynamicContributorsSettings = useMemo(
+    () => ({
+      ...contributorsSettings,
+      infinite: contributors ? contributors.length > 5 : false,
+    }),
+    [contributors],
+  );
 
   const displayStats = [
     { value: dbStats ? formatNum(dbStats.uploads) : "50K+", label: "Notes" },
@@ -432,8 +545,12 @@ function Home() {
               </div>
 
               <h1 className="text-5xl md:text-6xl lg:text-[72px] font-extrabold tracking-tight leading-[1.06] mb-6 text-slate-900">
-                Share Knowledge.<br />
-                Empower <span className="bg-gradient-to-r from-[#4F46E5] via-[#7C3AED] to-[#DB2777] bg-clip-text text-transparent drop-shadow-sm">Students.</span>
+                Share Knowledge.
+                <br />
+                Empower{" "}
+                <span className="bg-gradient-to-r from-[#4F46E5] via-[#7C3AED] to-[#DB2777] bg-clip-text text-transparent drop-shadow-sm">
+                  Students.
+                </span>
               </h1>
 
               <p className="text-lg text-[#5E6672] max-w-xl mb-8 leading-relaxed font-semibold">
@@ -452,7 +569,7 @@ function Home() {
                   Explore Resources
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
-                
+
                 <Button
                   size="lg"
                   variant="outline"
@@ -485,7 +602,9 @@ function Home() {
                     <Star className="h-4 w-4 fill-[#F59E0B] text-[#F59E0B]" />
                     <span className="text-sm font-bold text-[#1E293B] ml-1">{dynamicRating}</span>
                   </div>
-                  <span className="text-xs text-[#64748B] font-semibold">Loved by {dbStats ? formatNum(dbStats.users) : "20,000+"} students</span>
+                  <span className="text-xs text-[#64748B] font-semibold">
+                    Loved by {dbStats ? formatNum(dbStats.users) : "20,000+"} students
+                  </span>
                 </div>
               </div>
             </motion.div>
@@ -493,10 +612,10 @@ function Home() {
             {/* Orbiting Cards Illustration */}
             <div className="relative hidden lg:flex items-center justify-center h-[550px] w-full">
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-gradient-to-br from-[#8B5CF6]/20 to-[#EC4899]/10 blur-3xl opacity-80 pointer-events-none" />
-              
+
               <div className="relative w-[340px] h-[340px] flex items-center justify-center z-0 group">
                 <div className="absolute -bottom-6 w-[280px] h-[25px] bg-[#1E1B4B]/15 blur-md rounded-full transform scale-y-50 group-hover:scale-x-110 transition-transform duration-500" />
-                
+
                 <motion.img
                   src="/hero_student.png"
                   alt="Upgrade Your Skills"
@@ -506,7 +625,7 @@ function Home() {
                   transition={{
                     duration: 5,
                     repeat: Infinity,
-                    ease: "easeInOut"
+                    ease: "easeInOut",
                   }}
                 />
               </div>
@@ -520,7 +639,9 @@ function Home() {
                 className="absolute top-10 left-4 flex items-center gap-3 bg-white/90 backdrop-blur-md border border-white/80 rounded-2xl p-3 px-4 shadow-[0_8px_32px_0_rgba(31,38,135,0.06)] hover:shadow-elevated transition-all duration-300 animate-float z-10 cursor-pointer"
                 onClick={() => handleOrbitClick(orbitCards[0])}
               >
-                <div className={`flex h-10 w-10 items-center justify-center rounded-full ${orbitCards[0].bgColor} text-white shadow-[0_4px_10px_rgba(239,68,68,0.2)]`}>
+                <div
+                  className={`flex h-10 w-10 items-center justify-center rounded-full ${orbitCards[0].bgColor} text-white shadow-[0_4px_10px_rgba(239,68,68,0.2)]`}
+                >
                   {orbitCards[0].icon}
                 </div>
                 <div>
@@ -540,7 +661,9 @@ function Home() {
                 className="absolute top-24 right-4 flex items-center gap-3 bg-white/90 backdrop-blur-md border border-white/80 rounded-2xl p-3 px-4 shadow-[0_8px_32px_0_rgba(31,38,135,0.06)] hover:shadow-elevated transition-all duration-300 animate-float-delayed z-10 cursor-pointer"
                 onClick={() => handleOrbitClick(orbitCards[1])}
               >
-                <div className={`flex h-10 w-10 items-center justify-center rounded-full ${orbitCards[1].bgColor} text-white shadow-[0_4px_10px_rgba(59,130,246,0.2)]`}>
+                <div
+                  className={`flex h-10 w-10 items-center justify-center rounded-full ${orbitCards[1].bgColor} text-white shadow-[0_4px_10px_rgba(59,130,246,0.2)]`}
+                >
                   {orbitCards[1].icon}
                 </div>
                 <div>
@@ -560,7 +683,9 @@ function Home() {
                 className="absolute bottom-28 left-0 flex items-center gap-3 bg-white/90 backdrop-blur-md border border-white/80 rounded-2xl p-3 px-4 shadow-[0_8px_32px_0_rgba(31,38,135,0.06)] hover:shadow-elevated transition-all duration-300 animate-float-slow z-10 cursor-pointer"
                 onClick={() => handleOrbitClick(orbitCards[2])}
               >
-                <div className={`flex h-10 w-10 items-center justify-center rounded-full ${orbitCards[2].bgColor} text-white shadow-[0_4px_10px_rgba(139,92,246,0.2)]`}>
+                <div
+                  className={`flex h-10 w-10 items-center justify-center rounded-full ${orbitCards[2].bgColor} text-white shadow-[0_4px_10px_rgba(139,92,246,0.2)]`}
+                >
                   {orbitCards[2].icon}
                 </div>
                 <div>
@@ -580,7 +705,9 @@ function Home() {
                 className="absolute bottom-20 right-0 flex items-center gap-3 bg-white/90 backdrop-blur-md border border-white/80 rounded-2xl p-3 px-4 shadow-[0_8px_32px_0_rgba(31,38,135,0.06)] hover:shadow-elevated transition-all duration-300 animate-float z-10 cursor-pointer"
                 onClick={() => handleOrbitClick(orbitCards[3])}
               >
-                <div className={`flex h-10 w-10 items-center justify-center rounded-full ${orbitCards[3].bgColor} text-white shadow-[0_4px_10px_rgba(16,185,129,0.2)]`}>
+                <div
+                  className={`flex h-10 w-10 items-center justify-center rounded-full ${orbitCards[3].bgColor} text-white shadow-[0_4px_10px_rgba(16,185,129,0.2)]`}
+                >
                   {orbitCards[3].icon}
                 </div>
                 <div>
@@ -604,7 +731,9 @@ function Home() {
                 className="text-center md:text-left hover:scale-[1.02] transition-transform duration-200"
               >
                 <div className="text-3xl font-extrabold text-[#4F46E5]">{s.value}</div>
-                <div className="text-xs font-bold text-slate-400 mt-1 uppercase tracking-wider">{s.label}</div>
+                <div className="text-xs font-bold text-slate-400 mt-1 uppercase tracking-wider">
+                  {s.label}
+                </div>
               </motion.div>
             ))}
           </div>
@@ -616,10 +745,17 @@ function Home() {
         <div className="mx-auto max-w-[1400px]">
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
             <div>
-              <h2 className="text-3xl font-extrabold tracking-tight text-slate-900">Browse by Category</h2>
-              <p className="text-slate-500 text-sm mt-1 font-semibold">Discover notes, papers, and archives structured for your curriculum.</p>
+              <h2 className="text-3xl font-extrabold tracking-tight text-slate-900">
+                Browse by Category
+              </h2>
+              <p className="text-slate-500 text-sm mt-1 font-semibold">
+                Discover notes, papers, and archives structured for your curriculum.
+              </p>
             </div>
-            <Link to="/resources" className="text-sm font-bold text-slate-600 hover:text-[#6366F1] inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full border border-slate-100 bg-white hover:bg-slate-50 shadow-sm transition-all whitespace-nowrap shrink-0 self-start sm:self-auto">
+            <Link
+              to="/resources"
+              className="text-sm font-bold text-slate-600 hover:text-[#6366F1] inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full border border-slate-100 bg-white hover:bg-slate-50 shadow-sm transition-all whitespace-nowrap shrink-0 self-start sm:self-auto"
+            >
               View all <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
@@ -630,10 +766,14 @@ function Home() {
                 to="/resources"
                 className="group bg-white rounded-2xl p-6 border border-[#F1F5F9] hover:border-[#6366F1]/20 hover:shadow-[0_12px_30px_rgba(99,102,241,0.05)] hover:-translate-y-1 transition-all duration-300 flex flex-col items-center text-center"
               >
-                <div className={`h-14 w-14 rounded-2xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110 shadow-sm ${c.bg} border border-white/50`}>
+                <div
+                  className={`h-14 w-14 rounded-2xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110 shadow-sm ${c.bg} border border-white/50`}
+                >
                   <c.Icon className={`h-6 w-6 ${c.color}`} />
                 </div>
-                <div className="font-bold text-slate-800 text-sm group-hover:text-[#6366F1] transition-colors">{c.name}</div>
+                <div className="font-bold text-slate-800 text-sm group-hover:text-[#6366F1] transition-colors">
+                  {c.name}
+                </div>
                 <div className="text-xs text-slate-400 font-bold mt-1">{c.count}</div>
               </Link>
             ))}
@@ -646,10 +786,17 @@ function Home() {
         <div className="mx-auto max-w-[1400px]">
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
             <div>
-              <h2 className="text-3xl font-extrabold tracking-tight text-slate-900">Latest Resources</h2>
-              <p className="text-slate-500 text-sm mt-1 font-semibold">Recently uploaded study resources from universities across the country.</p>
+              <h2 className="text-3xl font-extrabold tracking-tight text-slate-900">
+                Latest Resources
+              </h2>
+              <p className="text-slate-500 text-sm mt-1 font-semibold">
+                Recently uploaded study resources from universities across the country.
+              </p>
             </div>
-            <Link to="/resources" className="text-sm font-bold text-slate-600 hover:text-[#6366F1] inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full border border-slate-100 bg-white hover:bg-slate-50 shadow-sm transition-all whitespace-nowrap shrink-0 self-start sm:self-auto">
+            <Link
+              to="/resources"
+              className="text-sm font-bold text-slate-600 hover:text-[#6366F1] inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full border border-slate-100 bg-white hover:bg-slate-50 shadow-sm transition-all whitespace-nowrap shrink-0 self-start sm:self-auto"
+            >
               View all resources <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
@@ -657,14 +804,17 @@ function Home() {
           {isLatestLoading ? (
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {Array.from({ length: 4 }).map((_, i) => (
-                <div key={i} className="bg-white border border-[#F1F5F9] rounded-2xl p-6 h-[190px] animate-pulse">
+                <div
+                  key={i}
+                  className="bg-white border border-[#F1F5F9] rounded-2xl p-6 h-[190px] animate-pulse"
+                >
                   <div className="h-10 w-10 bg-slate-100 rounded-xl mb-4" />
                   <div className="h-4 bg-slate-100 rounded w-3/4 mb-2" />
                   <div className="h-3 bg-slate-100 rounded w-1/2" />
                 </div>
               ))}
             </div>
-          ) : (!latest || latest.length === 0) ? (
+          ) : !latest || latest.length === 0 ? (
             <div className="text-center py-20 rounded-[32px] border border-dashed border-purple-200/80 bg-purple-50/5 relative overflow-hidden p-8">
               {/* Premium Empty State Illustration */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full bg-purple-600/5 blur-3xl pointer-events-none" />
@@ -673,7 +823,10 @@ function Home() {
                   <BookOpen className="h-8 w-8 text-purple-600 animate-pulse" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-850 mb-2">No resources shared yet</h3>
-                <p className="text-sm text-slate-500 font-semibold mb-6">Be the first to help your fellow students by uploading study notes, lab journals, or question papers!</p>
+                <p className="text-sm text-slate-500 font-semibold mb-6">
+                  Be the first to help your fellow students by uploading study notes, lab journals,
+                  or question papers!
+                </p>
                 <Link to="/upload">
                   <Button className="rounded-full bg-gradient-primary text-white hover:opacity-90 shadow-glow px-6 font-bold flex items-center gap-2 mx-auto cursor-pointer">
                     <Upload className="h-4 w-4" /> Share a Resource
@@ -691,23 +844,31 @@ function Home() {
                   const timeDisplay = timeAgo(r.created_at);
                   const avgRating =
                     r.ratings && r.ratings.length > 0
-                      ? (r.ratings.reduce((sum: number, x: any) => sum + x.score, 0) / r.ratings.length).toFixed(1)
+                      ? (
+                          r.ratings.reduce((sum: number, x: any) => sum + x.score, 0) /
+                          r.ratings.length
+                        ).toFixed(1)
                       : "4.0";
 
                   const getYoutubeId = (url: string) => {
                     if (!url) return null;
-                    const reg = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+                    const reg = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
                     const match = url.match(reg);
                     return match && match[2].length === 11 ? match[2] : null;
                   };
 
                   const isYoutube = r.url_link && getYoutubeId(r.url_link);
                   const isGithub = r.url_link && r.url_link.toLowerCase().includes("github.com");
-                  const isDrive = r.url_link && r.url_link.toLowerCase().includes("drive.google.com");
+                  const isDrive =
+                    r.url_link && r.url_link.toLowerCase().includes("drive.google.com");
                   const isWebsite = r.file_type === "link" && !isYoutube && !isGithub && !isDrive;
 
                   return (
-                    <div key={r.id} className="py-2 cursor-pointer" onClick={() => previewModal.show(r)}>
+                    <div
+                      key={r.id}
+                      className="py-2 cursor-pointer"
+                      onClick={() => previewModal.show(r)}
+                    >
                       <article className="group bg-white border border-[#F1F5F9] rounded-3xl p-5 hover:shadow-elevated hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between cursor-pointer min-h-[360px] relative overflow-hidden">
                         <div>
                           {/* Top badges bar */}
@@ -729,18 +890,28 @@ function Home() {
                                 <Globe className="h-5 w-5 text-violet-600" />
                               </div>
                             ) : (
-                              <div className={`flex h-10 w-10 items-center justify-center rounded-xl ${meta.color} font-bold text-xs shadow-sm border border-white`}>
+                              <div
+                                className={`flex h-10 w-10 items-center justify-center rounded-xl ${meta.color} font-bold text-xs shadow-sm border border-white`}
+                              >
                                 {meta.label}
                               </div>
                             )}
 
                             <div className="flex flex-col items-end gap-1 shrink-0">
                               <span className="text-[9px] font-bold bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full uppercase tracking-wider">
-                                {r.category || (isYoutube ? "Youtube Course" : isGithub ? "Github Repo" : isDrive ? "Drive Link" : "Notes")}
+                                {r.category ||
+                                  (isYoutube
+                                    ? "Youtube Course"
+                                    : isGithub
+                                      ? "Github Repo"
+                                      : isDrive
+                                        ? "Drive Link"
+                                        : "Notes")}
                               </span>
                               {r.verified && (
                                 <span className="text-[9px] font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full border border-blue-100 flex items-center gap-0.5 shadow-sm animate-pulse">
-                                  <CheckCircle className="h-2.5 w-2.5 fill-current text-blue-500" /> Verified
+                                  <CheckCircle className="h-2.5 w-2.5 fill-current text-blue-500" />{" "}
+                                  Verified
                                 </span>
                               )}
                             </div>
@@ -760,7 +931,9 @@ function Home() {
                                     alt=""
                                   />
                                   <div className="absolute inset-0 flex items-center justify-center">
-                                    <span className="h-7 w-7 bg-red-600 text-white rounded-full flex items-center justify-center shadow hover:scale-110 transition"><Play className="h-3.5 w-3.5 fill-current" /></span>
+                                    <span className="h-7 w-7 bg-red-600 text-white rounded-full flex items-center justify-center shadow hover:scale-110 transition">
+                                      <Play className="h-3.5 w-3.5 fill-current" />
+                                    </span>
                                   </div>
                                 </div>
                               )}
@@ -771,7 +944,8 @@ function Home() {
                                 {r.title}
                               </h3>
                               <p className="text-[11px] text-slate-500 font-semibold line-clamp-2">
-                                {r.description || "Open source repository containing lecture tutorials and coding guides."}
+                                {r.description ||
+                                  "Open source repository containing lecture tutorials and coding guides."}
                               </p>
                             </div>
                           ) : isDrive ? (
@@ -808,10 +982,20 @@ function Home() {
                               <h3 className="font-extrabold text-slate-800 text-sm leading-snug line-clamp-2 group-hover:text-violet-650 transition-colors">
                                 {r.title}
                               </h3>
-                              {r.subject && <p className="text-xs text-slate-400 font-semibold">{r.subject}</p>}
+                              {r.subject && (
+                                <p className="text-xs text-slate-400 font-semibold">{r.subject}</p>
+                              )}
                               <div className="flex flex-wrap gap-1 mt-1">
-                                {r.semester && <span className="text-[9px] bg-slate-50 text-slate-400 font-bold px-2 py-0.5 rounded border border-slate-100">{r.semester}</span>}
-                                {r.branch && <span className="text-[9px] bg-slate-50 text-slate-400 font-bold px-2 py-0.5 rounded border border-slate-100">{r.branch}</span>}
+                                {r.semester && (
+                                  <span className="text-[9px] bg-slate-50 text-slate-400 font-bold px-2 py-0.5 rounded border border-slate-100">
+                                    {r.semester}
+                                  </span>
+                                )}
+                                {r.branch && (
+                                  <span className="text-[9px] bg-slate-50 text-slate-400 font-bold px-2 py-0.5 rounded border border-slate-100">
+                                    {r.branch}
+                                  </span>
+                                )}
                               </div>
                             </div>
                           )}
@@ -826,11 +1010,17 @@ function Home() {
                                 className="h-5 w-5 rounded-full object-cover border border-slate-100"
                                 alt=""
                               />
-                              <span className="truncate max-w-[100px] text-slate-700">{authorName}</span>
+                              <span className="truncate max-w-[100px] text-slate-700">
+                                {authorName}
+                              </span>
                             </div>
                             <div className="flex items-center gap-2 text-slate-400">
-                              <span className="inline-flex items-center gap-0.5"><Download className="h-3 w-3" /> {formatNum(r.downloads ?? 0)}</span>
-                              <span className="inline-flex items-center gap-0.5 text-amber-500"><Star className="h-3 w-3 fill-current text-amber-400" /> {avgRating}</span>
+                              <span className="inline-flex items-center gap-0.5">
+                                <Download className="h-3 w-3" /> {formatNum(r.downloads ?? 0)}
+                              </span>
+                              <span className="inline-flex items-center gap-0.5 text-amber-500">
+                                <Star className="h-3 w-3 fill-current text-amber-400" /> {avgRating}
+                              </span>
                             </div>
                           </div>
 
@@ -881,10 +1071,17 @@ function Home() {
         <div className="mx-auto max-w-[1400px]">
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
             <div>
-              <h2 className="text-3xl font-extrabold tracking-tight text-slate-900">Trending Resources</h2>
-              <p className="text-slate-500 text-sm mt-1 font-semibold">The most popular revision aids, summaries, and guides downloaded by students.</p>
+              <h2 className="text-3xl font-extrabold tracking-tight text-slate-900">
+                Trending Resources
+              </h2>
+              <p className="text-slate-500 text-sm mt-1 font-semibold">
+                The most popular revision aids, summaries, and guides downloaded by students.
+              </p>
             </div>
-            <Link to="/resources" className="text-sm font-bold text-slate-600 hover:text-[#6366F1] inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full border border-slate-100 bg-white hover:bg-slate-50 shadow-sm transition-all whitespace-nowrap shrink-0 self-start sm:self-auto">
+            <Link
+              to="/resources"
+              className="text-sm font-bold text-slate-600 hover:text-[#6366F1] inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full border border-slate-100 bg-white hover:bg-slate-50 shadow-sm transition-all whitespace-nowrap shrink-0 self-start sm:self-auto"
+            >
               View all resources <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
@@ -892,14 +1089,17 @@ function Home() {
           {isTrendingLoading ? (
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {Array.from({ length: 4 }).map((_, i) => (
-                <div key={i} className="bg-white border border-[#F1F5F9] rounded-2xl p-6 h-[190px] animate-pulse">
+                <div
+                  key={i}
+                  className="bg-white border border-[#F1F5F9] rounded-2xl p-6 h-[190px] animate-pulse"
+                >
                   <div className="h-10 w-10 bg-slate-100 rounded-xl mb-4" />
                   <div className="h-4 bg-slate-100 rounded w-3/4 mb-2" />
                   <div className="h-3 bg-slate-100 rounded w-1/2" />
                 </div>
               ))}
             </div>
-          ) : (!trending || trending.length === 0) ? (
+          ) : !trending || trending.length === 0 ? (
             <div className="text-center py-20 rounded-[32px] border border-dashed border-purple-200/80 bg-purple-50/5 relative overflow-hidden p-8">
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full bg-purple-600/5 blur-3xl pointer-events-none" />
               <div className="relative z-10 max-w-md mx-auto">
@@ -907,7 +1107,10 @@ function Home() {
                   <Zap className="h-8 w-8 text-purple-600" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-850 mb-2">No trending resources yet</h3>
-                <p className="text-sm text-slate-500 font-semibold mb-6">Be the first to download or upload highly searched exam papers to get featured here!</p>
+                <p className="text-sm text-slate-500 font-semibold mb-6">
+                  Be the first to download or upload highly searched exam papers to get featured
+                  here!
+                </p>
               </div>
             </div>
           ) : (
@@ -920,23 +1123,31 @@ function Home() {
                   const timeDisplay = timeAgo(r.created_at);
                   const avgRating =
                     r.ratings && r.ratings.length > 0
-                      ? (r.ratings.reduce((sum: number, x: any) => sum + x.score, 0) / r.ratings.length).toFixed(1)
+                      ? (
+                          r.ratings.reduce((sum: number, x: any) => sum + x.score, 0) /
+                          r.ratings.length
+                        ).toFixed(1)
                       : "4.0";
 
                   const getYoutubeId = (url: string) => {
                     if (!url) return null;
-                    const reg = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+                    const reg = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
                     const match = url.match(reg);
                     return match && match[2].length === 11 ? match[2] : null;
                   };
 
                   const isYoutube = r.url_link && getYoutubeId(r.url_link);
                   const isGithub = r.url_link && r.url_link.toLowerCase().includes("github.com");
-                  const isDrive = r.url_link && r.url_link.toLowerCase().includes("drive.google.com");
+                  const isDrive =
+                    r.url_link && r.url_link.toLowerCase().includes("drive.google.com");
                   const isWebsite = r.file_type === "link" && !isYoutube && !isGithub && !isDrive;
 
                   return (
-                    <div key={r.id} className="py-2 cursor-pointer" onClick={() => previewModal.show(r)}>
+                    <div
+                      key={r.id}
+                      className="py-2 cursor-pointer"
+                      onClick={() => previewModal.show(r)}
+                    >
                       <article className="group bg-white border border-[#F1F5F9] rounded-3xl p-5 hover:shadow-elevated hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between cursor-pointer min-h-[360px] relative overflow-hidden">
                         <div>
                           {/* Top badges bar */}
@@ -958,18 +1169,28 @@ function Home() {
                                 <Globe className="h-5 w-5 text-violet-600" />
                               </div>
                             ) : (
-                              <div className={`flex h-10 w-10 items-center justify-center rounded-xl ${meta.color} font-bold text-xs shadow-sm border border-white`}>
+                              <div
+                                className={`flex h-10 w-10 items-center justify-center rounded-xl ${meta.color} font-bold text-xs shadow-sm border border-white`}
+                              >
                                 {meta.label}
                               </div>
                             )}
 
                             <div className="flex flex-col items-end gap-1 shrink-0">
                               <span className="text-[9px] font-bold bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full uppercase tracking-wider">
-                                {r.category || (isYoutube ? "Youtube Course" : isGithub ? "Github Repo" : isDrive ? "Drive Link" : "Notes")}
+                                {r.category ||
+                                  (isYoutube
+                                    ? "Youtube Course"
+                                    : isGithub
+                                      ? "Github Repo"
+                                      : isDrive
+                                        ? "Drive Link"
+                                        : "Notes")}
                               </span>
                               {r.verified && (
                                 <span className="text-[9px] font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full border border-blue-100 flex items-center gap-0.5 shadow-sm animate-pulse">
-                                  <CheckCircle className="h-2.5 w-2.5 fill-current text-blue-500" /> Verified
+                                  <CheckCircle className="h-2.5 w-2.5 fill-current text-blue-500" />{" "}
+                                  Verified
                                 </span>
                               )}
                             </div>
@@ -989,7 +1210,9 @@ function Home() {
                                     alt=""
                                   />
                                   <div className="absolute inset-0 flex items-center justify-center">
-                                    <span className="h-7 w-7 bg-red-600 text-white rounded-full flex items-center justify-center shadow hover:scale-110 transition"><Play className="h-3.5 w-3.5 fill-current" /></span>
+                                    <span className="h-7 w-7 bg-red-600 text-white rounded-full flex items-center justify-center shadow hover:scale-110 transition">
+                                      <Play className="h-3.5 w-3.5 fill-current" />
+                                    </span>
                                   </div>
                                 </div>
                               )}
@@ -1000,7 +1223,8 @@ function Home() {
                                 {r.title}
                               </h3>
                               <p className="text-[11px] text-slate-500 font-semibold line-clamp-2">
-                                {r.description || "Open source repository containing lecture tutorials and coding guides."}
+                                {r.description ||
+                                  "Open source repository containing lecture tutorials and coding guides."}
                               </p>
                             </div>
                           ) : isDrive ? (
@@ -1037,10 +1261,20 @@ function Home() {
                               <h3 className="font-extrabold text-slate-800 text-sm leading-snug line-clamp-2 group-hover:text-violet-650 transition-colors">
                                 {r.title}
                               </h3>
-                              {r.subject && <p className="text-xs text-slate-400 font-semibold">{r.subject}</p>}
+                              {r.subject && (
+                                <p className="text-xs text-slate-400 font-semibold">{r.subject}</p>
+                              )}
                               <div className="flex flex-wrap gap-1 mt-1">
-                                {r.semester && <span className="text-[9px] bg-slate-50 text-slate-400 font-bold px-2 py-0.5 rounded border border-slate-100">{r.semester}</span>}
-                                {r.branch && <span className="text-[9px] bg-slate-50 text-slate-400 font-bold px-2 py-0.5 rounded border border-slate-100">{r.branch}</span>}
+                                {r.semester && (
+                                  <span className="text-[9px] bg-slate-50 text-slate-400 font-bold px-2 py-0.5 rounded border border-slate-100">
+                                    {r.semester}
+                                  </span>
+                                )}
+                                {r.branch && (
+                                  <span className="text-[9px] bg-slate-50 text-slate-400 font-bold px-2 py-0.5 rounded border border-slate-100">
+                                    {r.branch}
+                                  </span>
+                                )}
                               </div>
                             </div>
                           )}
@@ -1055,11 +1289,17 @@ function Home() {
                                 className="h-5 w-5 rounded-full object-cover border border-slate-100"
                                 alt=""
                               />
-                              <span className="truncate max-w-[100px] text-slate-700">{authorName}</span>
+                              <span className="truncate max-w-[100px] text-slate-700">
+                                {authorName}
+                              </span>
                             </div>
                             <div className="flex items-center gap-2 text-slate-400">
-                              <span className="inline-flex items-center gap-0.5"><Download className="h-3 w-3" /> {formatNum(r.downloads ?? 0)}</span>
-                              <span className="inline-flex items-center gap-0.5 text-amber-500"><Star className="h-3 w-3 fill-current text-amber-400" /> {avgRating}</span>
+                              <span className="inline-flex items-center gap-0.5">
+                                <Download className="h-3 w-3" /> {formatNum(r.downloads ?? 0)}
+                              </span>
+                              <span className="inline-flex items-center gap-0.5 text-amber-500">
+                                <Star className="h-3 w-3 fill-current text-amber-400" /> {avgRating}
+                              </span>
                             </div>
                           </div>
 
@@ -1114,8 +1354,12 @@ function Home() {
                 <Lock className="w-8 h-8 text-purple-600" />
               </div>
               <div>
-                <h3 className="font-extrabold text-slate-900 text-xl">Want to download resources?</h3>
-                <p className="text-sm text-slate-500 mt-1 font-semibold">Create a free student account to download unlimited papers, labs, and revisions.</p>
+                <h3 className="font-extrabold text-slate-900 text-xl">
+                  Want to download resources?
+                </h3>
+                <p className="text-sm text-slate-500 mt-1 font-semibold">
+                  Create a free student account to download unlimited papers, labs, and revisions.
+                </p>
               </div>
             </div>
             <div className="flex items-center gap-4">
@@ -1137,22 +1381,39 @@ function Home() {
         </section>
       )}
 
-
       {/* How It Works */}
       <section className="px-4 lg:px-8 mt-24">
         <div className="mx-auto max-w-[1400px]">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <h2 className="text-3xl font-extrabold tracking-tight text-slate-900">How It Works</h2>
-            <p className="text-slate-500 text-sm mt-2 font-semibold">Getting started with AcadVault is simple. Follow these steps to optimize your study resources.</p>
+            <p className="text-slate-500 text-sm mt-2 font-semibold">
+              Getting started with AcadVault is simple. Follow these steps to optimize your study
+              resources.
+            </p>
           </div>
-          
+
           <div className="grid md:grid-cols-3 gap-8 relative">
             {[
-              { step: "01", title: "Create Your Account", desc: "Sign up in seconds. Enter your college name and major branch to personalize your academic dashboard feed." },
-              { step: "02", title: "Upload Notes & Papers", desc: "Drag and drop your handwritten study notes, lab journals, or previous exam papers. Tag subjects for search discovery." },
-              { step: "03", title: "Share and Learn Together", desc: "Download resources shared by other students. Earn points for every download your uploads receive and climb the ranks!" }
+              {
+                step: "01",
+                title: "Create Your Account",
+                desc: "Sign up in seconds. Enter your college name and major branch to personalize your academic dashboard feed.",
+              },
+              {
+                step: "02",
+                title: "Upload Notes & Papers",
+                desc: "Drag and drop your handwritten study notes, lab journals, or previous exam papers. Tag subjects for search discovery.",
+              },
+              {
+                step: "03",
+                title: "Share and Learn Together",
+                desc: "Download resources shared by other students. Earn points for every download your uploads receive and climb the ranks!",
+              },
             ].map((s, idx) => (
-              <div key={idx} className="bg-white border border-[#F1F5F9] rounded-3xl p-8 relative hover:shadow-[0_16px_40px_rgba(0,0,0,0.04)] hover:-translate-y-1 transition-all duration-300 group">
+              <div
+                key={idx}
+                className="bg-white border border-[#F1F5F9] rounded-3xl p-8 relative hover:shadow-[0_16px_40px_rgba(0,0,0,0.04)] hover:-translate-y-1 transition-all duration-300 group"
+              >
                 <div className="text-6xl font-black text-slate-100 group-hover:text-[#6366F1]/10 transition-colors absolute top-6 right-8 select-none">
                   {s.step}
                 </div>
@@ -1172,23 +1433,50 @@ function Home() {
         <div className="mx-auto max-w-[1400px]">
           <div className="flex items-end justify-between mb-8">
             <div>
-              <h2 className="text-3xl font-extrabold tracking-tight text-slate-900">Popular Subjects</h2>
-              <p className="text-slate-500 text-sm mt-1 font-semibold">Explore lecture guides, test banks, and revisions indexed by topic.</p>
+              <h2 className="text-3xl font-extrabold tracking-tight text-slate-900">
+                Popular Subjects
+              </h2>
+              <p className="text-slate-500 text-sm mt-1 font-semibold">
+                Explore lecture guides, test banks, and revisions indexed by topic.
+              </p>
             </div>
-            <Link to="/resources" className="text-sm font-semibold text-slate-600 hover:text-[#6366F1] inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full border border-slate-100 bg-white hover:bg-slate-50 shadow-sm transition-all">
+            <Link
+              to="/resources"
+              className="text-sm font-semibold text-slate-600 hover:text-[#6366F1] inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full border border-slate-100 bg-white hover:bg-slate-50 shadow-sm transition-all"
+            >
               View all subjects <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
           <div className="slick-slider-wrapper">
             <Slider {...subjectsSettings}>
               {[
-                { name: "Data Structures", Icon: Code2, color: "text-orange-600", bg: "bg-orange-50" },
+                {
+                  name: "Data Structures",
+                  Icon: Code2,
+                  color: "text-orange-600",
+                  bg: "bg-orange-50",
+                },
                 { name: "DBMS", Icon: Database, color: "text-amber-600", bg: "bg-amber-50" },
-                { name: "Operating System", Icon: Cpu, color: "text-violet-600", bg: "bg-violet-50" },
-                { name: "Computer Networks", Icon: Network, color: "text-blue-600", bg: "bg-blue-50" },
+                {
+                  name: "Operating System",
+                  Icon: Cpu,
+                  color: "text-violet-600",
+                  bg: "bg-violet-50",
+                },
+                {
+                  name: "Computer Networks",
+                  Icon: Network,
+                  color: "text-blue-600",
+                  bg: "bg-blue-50",
+                },
                 { name: "Java", Icon: Coffee, color: "text-rose-600", bg: "bg-rose-50" },
                 { name: "Python", Icon: Code2, color: "text-yellow-600", bg: "bg-yellow-50" },
-                { name: "Web Development", Icon: Globe, color: "text-indigo-600", bg: "bg-indigo-50" },
+                {
+                  name: "Web Development",
+                  Icon: Globe,
+                  color: "text-indigo-600",
+                  bg: "bg-indigo-50",
+                },
                 { name: "AI & ML", Icon: Brain, color: "text-emerald-600", bg: "bg-emerald-50" },
               ].map((s) => (
                 <div key={s.name} className="py-2">
@@ -1196,10 +1484,14 @@ function Home() {
                     onClick={() => navigate({ to: "/resources", search: { q: s.name } })}
                     className="flex items-center gap-3 bg-white border border-[#E2E8F0] rounded-full px-5 py-3 hover:border-[#6366F1]/30 hover:shadow-[0_8px_20px_rgba(99,102,241,0.04)] hover:-translate-y-1 transition-all duration-200 cursor-pointer"
                   >
-                    <div className={`h-8 w-8 rounded-full ${s.bg} flex items-center justify-center shrink-0 border border-white`}>
+                    <div
+                      className={`h-8 w-8 rounded-full ${s.bg} flex items-center justify-center shrink-0 border border-white`}
+                    >
                       <s.Icon className={`h-4 w-4 ${s.color}`} />
                     </div>
-                    <span className="text-sm font-bold text-slate-800 whitespace-nowrap">{s.name}</span>
+                    <span className="text-sm font-bold text-slate-800 whitespace-nowrap">
+                      {s.name}
+                    </span>
                   </div>
                 </div>
               ))}
@@ -1213,10 +1505,17 @@ function Home() {
         <div className="mx-auto max-w-[1400px]">
           <div className="flex items-end justify-between mb-8">
             <div>
-              <h2 className="text-3xl font-extrabold tracking-tight text-slate-900">Top Contributors</h2>
-              <p className="text-slate-500 text-sm mt-1 font-semibold">Outstanding students driving academic excellence in the community.</p>
+              <h2 className="text-3xl font-extrabold tracking-tight text-slate-900">
+                Top Contributors
+              </h2>
+              <p className="text-slate-500 text-sm mt-1 font-semibold">
+                Outstanding students driving academic excellence in the community.
+              </p>
             </div>
-            <Link to="/leaderboard" className="text-sm font-semibold text-slate-600 hover:text-[#6366F1] inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full border border-slate-100 bg-white hover:bg-slate-50 shadow-sm transition-all">
+            <Link
+              to="/leaderboard"
+              className="text-sm font-semibold text-slate-600 hover:text-[#6366F1] inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full border border-slate-100 bg-white hover:bg-slate-50 shadow-sm transition-all"
+            >
               View leaderboard <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
@@ -1224,16 +1523,63 @@ function Home() {
           {!contributors || contributors.length === 0 ? (
             <div className="grid grid-cols-2 md:grid-cols-5 gap-5">
               {[
-                { rank: 1, name: "Alex Johnson", points: "4,560", resources: 120, icon: Trophy, iconColor: "text-yellow-500", avatar: PRESET_AVATARS[0].url },
-                { rank: 2, name: "Jane Smith", points: "3,870", resources: 98, icon: Medal, iconColor: "text-slate-400", avatar: PRESET_AVATARS[1].url },
-                { rank: 3, name: "Michael Lee", points: "3,230", resources: 76, icon: Award, iconColor: "text-orange-500", avatar: PRESET_AVATARS[4].url },
-                { rank: 4, name: "Emily Davis", points: "2,890", resources: 65, icon: Star, iconColor: "text-violet-400", avatar: PRESET_AVATARS[3].url },
-                { rank: 5, name: "Chris Brown", points: "2,450", resources: 54, icon: Star, iconColor: "text-blue-400", avatar: PRESET_AVATARS[2].url },
+                {
+                  rank: 1,
+                  name: "Alex Johnson",
+                  points: "4,560",
+                  resources: 120,
+                  icon: Trophy,
+                  iconColor: "text-yellow-500",
+                  avatar: PRESET_AVATARS[0].url,
+                },
+                {
+                  rank: 2,
+                  name: "Jane Smith",
+                  points: "3,870",
+                  resources: 98,
+                  icon: Medal,
+                  iconColor: "text-slate-400",
+                  avatar: PRESET_AVATARS[1].url,
+                },
+                {
+                  rank: 3,
+                  name: "Michael Lee",
+                  points: "3,230",
+                  resources: 76,
+                  icon: Award,
+                  iconColor: "text-orange-500",
+                  avatar: PRESET_AVATARS[4].url,
+                },
+                {
+                  rank: 4,
+                  name: "Emily Davis",
+                  points: "2,890",
+                  resources: 65,
+                  icon: Star,
+                  iconColor: "text-violet-400",
+                  avatar: PRESET_AVATARS[3].url,
+                },
+                {
+                  rank: 5,
+                  name: "Chris Brown",
+                  points: "2,450",
+                  resources: 54,
+                  icon: Star,
+                  iconColor: "text-blue-400",
+                  avatar: PRESET_AVATARS[2].url,
+                },
               ].map((c) => (
-                <div key={c.rank} className="bg-white border border-[#F1F5F9] rounded-2xl p-5 hover:shadow-elevated hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between min-h-[220px]">
+                <div
+                  key={c.rank}
+                  className="bg-white border border-[#F1F5F9] rounded-2xl p-5 hover:shadow-elevated hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between min-h-[220px]"
+                >
                   <div className="flex items-start justify-between mb-4">
                     <div className="relative">
-                      <img src={c.avatar} className="h-14 w-14 rounded-full object-cover border-2 border-violet-100 shadow-sm" alt="" />
+                      <img
+                        src={c.avatar}
+                        className="h-14 w-14 rounded-full object-cover border-2 border-violet-100 shadow-sm"
+                        alt=""
+                      />
                       <div className="absolute -top-1.5 -left-1.5 h-6 w-6 rounded-full bg-white border border-slate-100 flex items-center justify-center text-[10px] font-bold text-slate-800 shadow-sm">
                         {c.rank}
                       </div>
@@ -1242,8 +1588,12 @@ function Home() {
                   </div>
                   <div>
                     <div className="font-bold text-slate-800 text-sm leading-snug">{c.name}</div>
-                    <div className="text-xs text-slate-500 font-semibold mt-1">{c.points} Points</div>
-                    <div className="text-xs text-slate-400 font-semibold">{c.resources} Resources</div>
+                    <div className="text-xs text-slate-500 font-semibold mt-1">
+                      {c.points} Points
+                    </div>
+                    <div className="text-xs text-slate-400 font-semibold">
+                      {c.resources} Resources
+                    </div>
                   </div>
                   <div className="mt-4 inline-flex items-center gap-1 text-[10px] font-bold text-violet-600 bg-[#F5F3FF] rounded-full px-3 py-1.5 w-max border border-[#E9E3FF]">
                     <Sparkles className="h-3 w-3" /> Top Contributor
@@ -1276,10 +1626,18 @@ function Home() {
                           <RankIcon className={`h-5 w-5 ${rankIconColor}`} />
                         </div>
                         <div>
-                          <div className="font-bold text-slate-800 text-sm leading-snug truncate">{c.full_name ?? "Anonymous"}</div>
-                          <div className="text-[10px] text-slate-400 font-semibold truncate mb-2">{c.college_name ?? "University"}</div>
-                          <div className="text-xs text-slate-500 font-bold mt-1">{formatNum(c.downloads)} Downloads</div>
-                          <div className="text-xs text-slate-400 font-semibold">{c.uploads} Resources shared</div>
+                          <div className="font-bold text-slate-800 text-sm leading-snug truncate">
+                            {c.full_name ?? "Anonymous"}
+                          </div>
+                          <div className="text-[10px] text-slate-400 font-semibold truncate mb-2">
+                            {c.college_name ?? "University"}
+                          </div>
+                          <div className="text-xs text-slate-500 font-bold mt-1">
+                            {formatNum(c.downloads)} Downloads
+                          </div>
+                          <div className="text-xs text-slate-400 font-semibold">
+                            {c.uploads} Resources shared
+                          </div>
                         </div>
                         <div className="mt-4 inline-flex items-center gap-1 text-[10px] font-bold text-violet-650 bg-[#F5F3FF] rounded-full px-3 py-1.5 w-max border border-[#E9E3FF]">
                           <Sparkles className="h-3 w-3 animate-pulse" /> Contributor
@@ -1294,35 +1652,41 @@ function Home() {
         </div>
       </section>
 
-
       {/* FAQ Section */}
       <section className="px-4 lg:px-8 mt-24 mb-12">
         <div className="mx-auto max-w-[800px]">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-extrabold tracking-tight text-slate-900">Frequently Asked Questions</h2>
-            <p className="text-slate-500 text-sm mt-2 font-semibold">Have questions about AcadVault? We have answers to the most common queries.</p>
+            <h2 className="text-3xl font-extrabold tracking-tight text-slate-900">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-slate-500 text-sm mt-2 font-semibold">
+              Have questions about AcadVault? We have answers to the most common queries.
+            </p>
           </div>
-          
+
           <div className="space-y-4">
             {[
               {
                 q: "Is AcadVault completely free?",
-                a: "Yes, AcadVault is 100% free! All downloads and uploads are completely free. Our mission is to democratize academic resources for students worldwide."
+                a: "Yes, AcadVault is 100% free! All downloads and uploads are completely free. Our mission is to democratize academic resources for students worldwide.",
               },
               {
                 q: "What types of files can I upload?",
-                a: "You can upload PDF notes, PowerPoint presentation slides (PPT/PPTX), Word documents (DOC/DOCX), and ZIP archives (which are great for lab records or collections of papers)."
+                a: "You can upload PDF notes, PowerPoint presentation slides (PPT/PPTX), Word documents (DOC/DOCX), and ZIP archives (which are great for lab records or collections of papers).",
               },
               {
                 q: "How do I earn points and reach the leaderboard?",
-                a: "You earn points by sharing high-quality resources. For every download your resources receive, you earn points. The more you upload, and the more helpful your resources are, the higher you rise!"
+                a: "You earn points by sharing high-quality resources. For every download your resources receive, you earn points. The more you upload, and the more helpful your resources are, the higher you rise!",
               },
               {
                 q: "Are the resources verified for accuracy?",
-                a: "Resources are uploaded by fellow students and rated by the community. We encourage users to upvote helpful notes. If you find any duplicate or incorrect content, you can report it."
-              }
+                a: "Resources are uploaded by fellow students and rated by the community. We encourage users to upvote helpful notes. If you find any duplicate or incorrect content, you can report it.",
+              },
             ].map((faq, idx) => (
-              <div key={idx} className="bg-white border border-[#F1F5F9] rounded-2xl overflow-hidden shadow-sm transition-all duration-200 hover:border-[#6366F1]/20">
+              <div
+                key={idx}
+                className="bg-white border border-[#F1F5F9] rounded-2xl overflow-hidden shadow-sm transition-all duration-200 hover:border-[#6366F1]/20"
+              >
                 <details className="group">
                   <summary className="flex items-center justify-between cursor-pointer p-5 font-bold text-slate-800 text-sm list-none select-none">
                     <span>{faq.q}</span>
@@ -1354,9 +1718,15 @@ function Home() {
                 <Rocket className="h-8 w-8 text-white animate-bounce" />
               </div>
               <div className="text-primary-foreground">
-                <h3 className="text-3xl font-extrabold text-white">Start Sharing. Start Learning.</h3>
-                <p className="text-base text-white/90 mt-1 font-semibold">Be a part of AcadVault today!</p>
-                <p className="text-sm text-white/85 mt-1 font-medium">Upload your notes and help thousands of students study better.</p>
+                <h3 className="text-3xl font-extrabold text-white">
+                  Start Sharing. Start Learning.
+                </h3>
+                <p className="text-base text-white/90 mt-1 font-semibold">
+                  Be a part of AcadVault today!
+                </p>
+                <p className="text-sm text-white/85 mt-1 font-medium">
+                  Upload your notes and help thousands of students study better.
+                </p>
               </div>
             </div>
             <div className="flex items-center gap-4">

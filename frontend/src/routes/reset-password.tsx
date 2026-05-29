@@ -49,7 +49,10 @@ function ResetPage() {
 
       <div className="w-full max-w-md relative z-10">
         {/* Back Link */}
-        <Link to="/login" className="inline-flex items-center text-sm text-zinc-400 hover:text-white mb-6 transition-colors group">
+        <Link
+          to="/login"
+          className="inline-flex items-center text-sm text-zinc-400 hover:text-white mb-6 transition-colors group"
+        >
           <ArrowLeft className="h-4 w-4 mr-1.5 transition-transform group-hover:-translate-x-1" />
           Back to login
         </Link>
@@ -109,11 +112,7 @@ function ResetPage() {
               disabled={loading}
               className="w-full h-11 rounded-xl bg-gradient-primary text-white hover:opacity-90 shadow-glow font-semibold transition-all mt-4 cursor-pointer flex items-center justify-center gap-2"
             >
-              {loading ? (
-                <Loader2 className="h-4 w-4 animate-spin" />
-              ) : (
-                <>Update Password</>
-              )}
+              {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <>Update Password</>}
             </Button>
           </form>
         </div>

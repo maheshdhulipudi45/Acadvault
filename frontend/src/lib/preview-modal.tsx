@@ -27,6 +27,6 @@ export function usePreviewModal() {
       return () => listeners.delete(cb);
     },
     () => state,
-    () => state
+    () => state,
   );
 }

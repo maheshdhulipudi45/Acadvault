@@ -144,8 +144,9 @@ function ResourcesPage() {
       // Search Query Filter with smart fuzzy keyword matching
       if (q) {
         const queryClean = q.toLowerCase().trim();
-        const searchStr = `${r.title} ${r.subject ?? ""} ${r.description ?? ""} ${r.college ?? ""} ${r.category ?? ""}`.toLowerCase();
-        
+        const searchStr =
+          `${r.title} ${r.subject ?? ""} ${r.description ?? ""} ${r.college ?? ""} ${r.category ?? ""}`.toLowerCase();
+
         // Exact match or partial token matching
         const words = queryClean.split(/\s+/);
         const matchesAllWords = words.every((word) => searchStr.includes(word));
@@ -193,7 +194,9 @@ function ResourcesPage() {
     } else if (sort === "az") {
       list = [...list].sort((a, b) => a.title.localeCompare(b.title));
     } else {
-      list = [...list].sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+      list = [...list].sort(
+        (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
+      );
     }
     return list;
   }, [resources, q, semester, branch, stream, type, format, sort, verifiedOnly]);
@@ -217,7 +220,7 @@ function ResourcesPage() {
     setQ("");
   };
 
-  const handleQuickChip = (chip: typeof QUICK_CHIPS[0]) => {
+  const handleQuickChip = (chip: (typeof QUICK_CHIPS)[0]) => {
     if (chip.type === "type") {
       setType(type === chip.value ? "All" : chip.value);
     } else if (chip.type === "stream") {
@@ -256,7 +259,7 @@ function ResourcesPage() {
   // YouTube preview ID
   const getYoutubeEmbedId = (url: string) => {
     if (!url) return null;
-    const reg = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    const reg = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
     const match = url.match(reg);
     return match && match[2].length === 11 ? match[2] : null;
   };
@@ -266,7 +269,9 @@ function ResourcesPage() {
     const meta = fileMeta(r.file_type);
     const avgRating =
       r.ratings && r.ratings.length > 0
-        ? (r.ratings.reduce((sum: number, x: any) => sum + x.score, 0) / r.ratings.length).toFixed(1)
+        ? (r.ratings.reduce((sum: number, x: any) => sum + x.score, 0) / r.ratings.length).toFixed(
+            1,
+          )
         : "N/A";
 
     const isYoutube = r.url_link && getYoutubeEmbedId(r.url_link);
@@ -299,7 +304,9 @@ function ResourcesPage() {
                 <Globe className="h-5 w-5" />
               </div>
             ) : (
-              <div className={`flex h-10 w-10 items-center justify-center rounded-xl ${meta.color} font-bold text-xs shadow-sm border border-white`}>
+              <div
+                className={`flex h-10 w-10 items-center justify-center rounded-xl ${meta.color} font-bold text-xs shadow-sm border border-white`}
+              >
                 {meta.label}
               </div>
             )}
@@ -330,7 +337,9 @@ function ResourcesPage() {
                     alt=""
                   />
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="h-7 w-7 bg-red-600 text-white rounded-full flex items-center justify-center shadow"><Play className="h-3.5 w-3.5 fill-current" /></span>
+                    <span className="h-7 w-7 bg-red-600 text-white rounded-full flex items-center justify-center shadow">
+                      <Play className="h-3.5 w-3.5 fill-current" />
+                    </span>
                   </div>
                 </div>
               )}
@@ -341,7 +350,8 @@ function ResourcesPage() {
                 {r.title}
               </h3>
               <p className="text-[11px] text-slate-500 font-semibold line-clamp-2">
-                {r.description || "Open source repository containing lecture tutorials and coding guides."}
+                {r.description ||
+                  "Open source repository containing lecture tutorials and coding guides."}
               </p>
             </div>
           ) : isDrive ? (
@@ -349,9 +359,7 @@ function ResourcesPage() {
               <h3 className="font-extrabold text-slate-800 text-sm leading-snug line-clamp-2 group-hover:text-violet-650 transition-colors">
                 {r.title}
               </h3>
-              <p className="text-[11px] text-slate-500 font-semibold">
-                Google Drive Shared Folder
-              </p>
+              <p className="text-[11px] text-slate-500 font-semibold">Google Drive Shared Folder</p>
             </div>
           ) : isWebsite ? (
             <div className="space-y-1.5">
@@ -393,15 +401,24 @@ function ResourcesPage() {
           <div className="flex items-center justify-between text-[11px] text-slate-450 font-bold">
             <div className="flex items-center gap-2">
               <img
-                src={r.uploader_avatar || "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=80&auto=format&fit=crop&q=80"}
+                src={
+                  r.uploader_avatar ||
+                  "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=80&auto=format&fit=crop&q=80"
+                }
                 className="h-5 w-5 rounded-full object-cover border border-slate-100"
                 alt=""
               />
-              <span className="truncate max-w-[120px]">{r.uploader_name || "Anonymous Student"}</span>
+              <span className="truncate max-w-[120px]">
+                {r.uploader_name || "Anonymous Student"}
+              </span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="inline-flex items-center gap-0.5"><Download className="h-3 w-3 text-slate-400" /> {formatNum(r.downloads)}</span>
-              <span className="inline-flex items-center gap-0.5 text-amber-500"><Star className="h-3 w-3 fill-current text-amber-400" /> {avgRating}</span>
+              <span className="inline-flex items-center gap-0.5">
+                <Download className="h-3 w-3 text-slate-400" /> {formatNum(r.downloads)}
+              </span>
+              <span className="inline-flex items-center gap-0.5 text-amber-500">
+                <Star className="h-3 w-3 fill-current text-amber-400" /> {avgRating}
+              </span>
             </div>
           </div>
 
@@ -442,20 +459,27 @@ function ResourcesPage() {
     <SiteLayout>
       <div className="px-4 lg:px-8 mt-8">
         <div className="mx-auto max-w-[1400px]">
-          
           {/* Page Banner */}
           <div className="rounded-[32px] bg-gradient-to-r from-purple-50 via-blue-50 to-green-50 border border-purple-100/50 p-8 md:p-10 mb-8 relative overflow-hidden shadow-[0_15px_40px_rgba(139,92,246,0.02)]">
             <div className="absolute top-6 right-8 hidden md:block">
-              <BookOpen className="h-20 w-20 text-purple-400/20 animate-pulse" style={{ animationDuration: '4s' }} />
+              <BookOpen
+                className="h-20 w-20 text-purple-400/20 animate-pulse"
+                style={{ animationDuration: "4s" }}
+              />
             </div>
             <div className="inline-flex items-center gap-2 rounded-full bg-white/85 px-4 py-1.5 text-xs font-bold text-purple-700 mb-4 border border-purple-100 shadow-sm">
-              <Sparkles className="h-3.5 w-3.5 text-[#FF9800] fill-[#FF9800]/10 animate-bounce" /> {filtered.length} resources available
+              <Sparkles className="h-3.5 w-3.5 text-[#FF9800] fill-[#FF9800]/10 animate-bounce" />{" "}
+              {filtered.length} resources available
             </div>
             <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-2 text-slate-900">
-              Explore <span className="bg-gradient-to-r from-purple-600 via-violet-600 to-indigo-600 bg-clip-text text-transparent">Resources</span>
+              Explore{" "}
+              <span className="bg-gradient-to-r from-purple-600 via-violet-600 to-indigo-600 bg-clip-text text-transparent">
+                Resources
+              </span>
             </h1>
             <p className="text-muted-foreground mb-6 max-w-xl font-semibold text-sm">
-              Search lecture summaries, dynamic repositories, previous exam papers, and course playlists verified by administrators.
+              Search lecture summaries, dynamic repositories, previous exam papers, and course
+              playlists verified by administrators.
             </p>
             <div className="relative max-w-2xl">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
@@ -469,7 +493,9 @@ function ResourcesPage() {
 
             {/* Keyword Autocomplete Suggestions list */}
             <div className="flex flex-wrap items-center gap-2 mt-4">
-              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mr-1">Suggestions:</span>
+              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mr-1">
+                Suggestions:
+              </span>
               {AUTOCOMPLETE_SUGGESTIONS.map((suggestion) => (
                 <button
                   key={suggestion}
@@ -485,7 +511,6 @@ function ResourcesPage() {
 
           {/* Grid Layout */}
           <div className="grid lg:grid-cols-[300px_1fr] gap-6 items-start">
-            
             {/* Filter sidebar */}
             <aside className="bg-white border border-border/60 rounded-3xl p-6 shadow-card lg:sticky lg:top-20">
               <div className="flex items-center justify-between mb-5">
@@ -496,35 +521,57 @@ function ResourcesPage() {
                   <h2 className="font-bold text-slate-850 text-sm">Filters</h2>
                 </div>
                 {(activeFilters.length > 0 || q) && (
-                  <button onClick={clearAll} className="text-xs text-[#8B5CF6] font-bold hover:underline cursor-pointer">
+                  <button
+                    onClick={clearAll}
+                    className="text-xs text-[#8B5CF6] font-bold hover:underline cursor-pointer"
+                  >
                     Clear all
                   </button>
                 )}
               </div>
 
               <div className="space-y-5">
-                
-                <FormField label="Stream / Program" icon={<GraduationCap className="h-3.5 w-3.5" />}>
+                <FormField
+                  label="Stream / Program"
+                  icon={<GraduationCap className="h-3.5 w-3.5" />}
+                >
                   <Select value={stream} onValueChange={setStream}>
-                    <SelectTrigger className="h-11 rounded-xl bg-muted/40 border-border/60"><SelectValue /></SelectTrigger>
+                    <SelectTrigger className="h-11 rounded-xl bg-muted/40 border-border/60">
+                      <SelectValue />
+                    </SelectTrigger>
                     <SelectContent>
-                      {STREAMS.map((s) => <SelectItem key={s} value={s}>{s}</SelectItem>)}
+                      {STREAMS.map((s) => (
+                        <SelectItem key={s} value={s}>
+                          {s}
+                        </SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
                 </FormField>
 
                 <FormField label="Sharing Format" icon={<FileText className="h-3.5 w-3.5" />}>
                   <Select value={format} onValueChange={setFormat}>
-                    <SelectTrigger className="h-11 rounded-xl bg-muted/40 border-border/60"><SelectValue /></SelectTrigger>
+                    <SelectTrigger className="h-11 rounded-xl bg-muted/40 border-border/60">
+                      <SelectValue />
+                    </SelectTrigger>
                     <SelectContent>
-                      {FORMATS.map((f) => <SelectItem key={f} value={f}>{f}</SelectItem>)}
+                      {FORMATS.map((f) => (
+                        <SelectItem key={f} value={f}>
+                          {f}
+                        </SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
                 </FormField>
 
-                <FormField label="Verification Status" icon={<CheckCircle className="h-3.5 w-3.5" />}>
+                <FormField
+                  label="Verification Status"
+                  icon={<CheckCircle className="h-3.5 w-3.5" />}
+                >
                   <Select value={verifiedOnly} onValueChange={setVerifiedOnly}>
-                    <SelectTrigger className="h-11 rounded-xl bg-muted/40 border-border/60"><SelectValue /></SelectTrigger>
+                    <SelectTrigger className="h-11 rounded-xl bg-muted/40 border-border/60">
+                      <SelectValue />
+                    </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="All">All Resources</SelectItem>
                       <SelectItem value="Verified Only">Verified Only</SelectItem>
@@ -534,36 +581,60 @@ function ResourcesPage() {
 
                 <FormField label="Resource Type" icon={<BookOpen className="h-3.5 w-3.5" />}>
                   <Select value={type} onValueChange={setType}>
-                    <SelectTrigger className="h-11 rounded-xl bg-muted/40 border-border/60"><SelectValue /></SelectTrigger>
+                    <SelectTrigger className="h-11 rounded-xl bg-muted/40 border-border/60">
+                      <SelectValue />
+                    </SelectTrigger>
                     <SelectContent>
-                      {TYPES.map((o) => <SelectItem key={o} value={o}>{o}</SelectItem>)}
+                      {TYPES.map((o) => (
+                        <SelectItem key={o} value={o}>
+                          {o}
+                        </SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
                 </FormField>
 
                 <FormField label="Semester" icon={<Calendar className="h-3.5 w-3.5" />}>
                   <Select value={semester} onValueChange={setSemester}>
-                    <SelectTrigger className="h-11 rounded-xl bg-muted/40 border-border/60"><SelectValue /></SelectTrigger>
+                    <SelectTrigger className="h-11 rounded-xl bg-muted/40 border-border/60">
+                      <SelectValue />
+                    </SelectTrigger>
                     <SelectContent>
-                      {SEMESTERS.map((o) => <SelectItem key={o} value={o}>{o}</SelectItem>)}
+                      {SEMESTERS.map((o) => (
+                        <SelectItem key={o} value={o}>
+                          {o}
+                        </SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
                 </FormField>
 
                 <FormField label="Branch / Major" icon={<GraduationCap className="h-3.5 w-3.5" />}>
                   <Select value={branch} onValueChange={setBranch}>
-                    <SelectTrigger className="h-11 rounded-xl bg-muted/40 border-border/60"><SelectValue /></SelectTrigger>
+                    <SelectTrigger className="h-11 rounded-xl bg-muted/40 border-border/60">
+                      <SelectValue />
+                    </SelectTrigger>
                     <SelectContent>
-                      {BRANCHES.map((o) => <SelectItem key={o} value={o}>{o}</SelectItem>)}
+                      {BRANCHES.map((o) => (
+                        <SelectItem key={o} value={o}>
+                          {o}
+                        </SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
                 </FormField>
 
                 <FormField label="Sort by" icon={<ArrowUpDown className="h-3.5 w-3.5" />}>
                   <Select value={sort} onValueChange={setSort}>
-                    <SelectTrigger className="h-11 rounded-xl bg-muted/40 border-border/60"><SelectValue /></SelectTrigger>
+                    <SelectTrigger className="h-11 rounded-xl bg-muted/40 border-border/60">
+                      <SelectValue />
+                    </SelectTrigger>
                     <SelectContent>
-                      {SORTS.map((o) => <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>)}
+                      {SORTS.map((o) => (
+                        <SelectItem key={o.value} value={o.value}>
+                          {o.label}
+                        </SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
                 </FormField>
@@ -574,7 +645,9 @@ function ResourcesPage() {
                       <Sparkles className="h-4 w-4 mr-2" /> Share a Resource
                     </Button>
                   </Link>
-                  <p className="text-xs text-muted-foreground text-center mt-3 font-semibold">Help others by uploading study notes.</p>
+                  <p className="text-xs text-muted-foreground text-center mt-3 font-semibold">
+                    Help others by uploading study notes.
+                  </p>
                 </div>
               </div>
             </aside>
@@ -615,7 +688,7 @@ function ResourcesPage() {
                   className="text-center py-20 rounded-[32px] border border-dashed border-purple-200 bg-purple-50/5 p-8 flex flex-col items-center justify-center"
                 >
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-purple-500/5 rounded-full blur-3xl pointer-events-none" />
-                  
+
                   <motion.div
                     animate={{ y: [0, -10, 0] }}
                     transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
@@ -624,11 +697,14 @@ function ResourcesPage() {
                     <FileQuestion className="h-9 w-9 text-purple-650" />
                   </motion.div>
 
-                  <h3 className="text-xl font-bold text-slate-850 mb-2 relative z-10">No resources matched your search</h3>
+                  <h3 className="text-xl font-bold text-slate-850 mb-2 relative z-10">
+                    No resources matched your search
+                  </h3>
                   <p className="text-sm text-slate-500 max-w-sm font-semibold mb-6 relative z-10">
-                    We couldn't find anything matching your exact filters. Try adjusting them or upload notes to help seniors!
+                    We couldn't find anything matching your exact filters. Try adjusting them or
+                    upload notes to help seniors!
                   </p>
-                  
+
                   <Link to="/upload" className="relative z-10">
                     <Button className="rounded-full bg-gradient-primary text-white hover:opacity-90 shadow-glow px-6 font-bold flex items-center gap-2 cursor-pointer">
                       <Download className="h-4 w-4" /> Share a Resource
@@ -641,7 +717,10 @@ function ResourcesPage() {
               {isLoading && (
                 <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-6">
                   {Array.from({ length: 6 }).map((_, i) => (
-                    <div key={i} className="bg-white border border-border/60 rounded-3xl p-5 h-56 animate-pulse">
+                    <div
+                      key={i}
+                      className="bg-white border border-border/60 rounded-3xl p-5 h-56 animate-pulse"
+                    >
                       <div className="h-12 w-12 rounded-xl bg-slate-100 mb-4" />
                       <div className="h-4 w-3/4 bg-slate-100 rounded mb-2" />
                       <div className="h-3 w-1/2 bg-slate-100 rounded" />
@@ -653,9 +732,7 @@ function ResourcesPage() {
               {/* Card lists */}
               <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-6">
                 {filtered.map((r: any) => (
-                  <div key={r.id}>
-                    {renderCardContent(r)}
-                  </div>
+                  <div key={r.id}>{renderCardContent(r)}</div>
                 ))}
               </div>
             </div>

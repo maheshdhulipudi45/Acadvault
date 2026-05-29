@@ -3,9 +3,12 @@ import { FileText, FileType, Presentation, Archive, FileImage } from "lucide-rea
 export const fileMeta = (ext: string) => {
   const e = ext.toLowerCase().replace(".", "");
   if (e.includes("pdf")) return { label: "PDF", color: "bg-red-100 text-red-600", Icon: FileText };
-  if (e.includes("doc")) return { label: "DOCX", color: "bg-blue-100 text-blue-600", Icon: FileType };
-  if (e.includes("ppt")) return { label: "PPT", color: "bg-violet-100 text-violet-600", Icon: Presentation };
-  if (e.includes("zip") || e.includes("rar")) return { label: "ZIP", color: "bg-emerald-100 text-emerald-600", Icon: Archive };
+  if (e.includes("doc"))
+    return { label: "DOCX", color: "bg-blue-100 text-blue-600", Icon: FileType };
+  if (e.includes("ppt"))
+    return { label: "PPT", color: "bg-violet-100 text-violet-600", Icon: Presentation };
+  if (e.includes("zip") || e.includes("rar"))
+    return { label: "ZIP", color: "bg-emerald-100 text-emerald-600", Icon: Archive };
   return { label: e.toUpperCase(), color: "bg-slate-100 text-slate-600", Icon: FileImage };
 };
 
